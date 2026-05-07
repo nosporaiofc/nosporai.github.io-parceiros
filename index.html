@@ -503,7 +503,8 @@ section { padding:60px 24px; }
     const categoria = partner === 'sunvolt' ? 'Casa' : 'Casa';
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      from_name: nome + ' ' + sob,
+      nome:      nome,
+      sobrenome: sob,
       whatsapp:  wa,
       parceiro:  info,
       categoria: categoria,
