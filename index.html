@@ -6,664 +6,512 @@
 <title>Nós Por Aí</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const EMAILJS_PUBLIC_KEY  = '4i1bsQLAeMScJu9Bd';
+  const EMAILJS_SERVICE_ID  = 'service_wgw9hab';
+  const EMAILJS_TEMPLATE_ID = 'template_q2hqan9';
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --white:   #F9F9F9;
-  --charcoal:#2D3132;
-  --mustard: #FFC107;
-  --mustard2:#FFD54F;
-  --gray:    #7A8490;
-  --light:   #EFEFEF;
-  --card-bg: #FFFFFF;
-  --shadow:  0 4px 20px rgba(0,0,0,0.07);
-  --radius:  20px;
+  --white:#F9F9F9; --charcoal:#2D3132; --mustard:#FFC107; --mustard2:#FFD54F;
+  --gray:#7A8490; --light:#EFEFEF; --card-bg:#FFFFFF;
+  --shadow:0 4px 20px rgba(0,0,0,0.07); --radius:20px;
 }
+html { scroll-behavior:smooth; }
+body { background:var(--white); color:var(--charcoal); font-family:'Montserrat',sans-serif; overflow-x:hidden; }
 
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--white);
-  color: var(--charcoal);
-  font-family: 'Montserrat', sans-serif;
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
-}
+/* ── PAGE SYSTEM ── */
+.page { display:none; min-height:100dvh; }
+.page.active { display:block; }
 
 /* ── NAV ── */
 nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(249,249,249,0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px;
-  height: 62px;
+  position:sticky; top:0; z-index:100;
+  background:rgba(249,249,249,0.92); backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 24px; height:62px;
 }
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; cursor:pointer; }
+.logo-mark { width:36px; height:36px; background:var(--charcoal); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.logo-mark svg { width:22px; height:22px; }
+.logo-wordmark { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal); }
+.logo-wordmark span { color:var(--mustard); }
+.hamburger { width:36px; height:36px; border:none; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:5px; }
+.hamburger span { display:block; height:2px; background:var(--charcoal); border-radius:2px; transition:width 0.2s; }
+.hamburger span:nth-child(1){width:22px;} .hamburger span:nth-child(2){width:16px;} .hamburger span:nth-child(3){width:22px;}
+.hamburger:hover span { width:22px; }
 
-.nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none;
-}
+/* MOBILE MENU */
+.mobile-menu { position:fixed; inset:0; z-index:200; background:var(--charcoal); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+.mobile-menu.open { transform:translateX(0); }
+.mobile-menu a { font-family:'Playfair Display',serif; font-size:2rem; color:var(--white); text-decoration:none; letter-spacing:0.04em; transition:color 0.2s; cursor:pointer; }
+.mobile-menu a:hover { color:var(--mustard); }
+.menu-close { position:absolute; top:20px; right:24px; background:none; border:none; color:var(--white); font-size:1.8rem; cursor:pointer; }
 
-.logo-mark {
-  width: 36px; height: 36px;
-  background: var(--charcoal);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
+/* ── BACK BUTTON ── */
+.back-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  background:none; border:none; cursor:pointer;
+  font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.8rem;
+  letter-spacing:0.06em; text-transform:uppercase; color:var(--gray);
+  padding:0; transition:color 0.2s;
 }
-.logo-mark svg { width: 22px; height: 22px; }
-
-.logo-wordmark {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--charcoal);
-}
-.logo-wordmark span { color: var(--mustard); }
-
-.hamburger {
-  width: 36px; height: 36px;
-  border: none; background: none; cursor: pointer;
-  display: flex; flex-direction: column;
-  align-items: flex-end; justify-content: center; gap: 5px;
-}
-.hamburger span {
-  display: block; height: 2px; background: var(--charcoal);
-  border-radius: 2px; transition: width 0.2s;
-}
-.hamburger span:nth-child(1) { width: 22px; }
-.hamburger span:nth-child(2) { width: 16px; }
-.hamburger span:nth-child(3) { width: 22px; }
-.hamburger:hover span { width: 22px; }
-
-/* ── MOBILE MENU ── */
-.mobile-menu {
-  position: fixed; inset: 0; z-index: 200;
-  background: var(--charcoal);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 36px;
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-}
-.mobile-menu.open { transform: translateX(0); }
-.mobile-menu a {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: var(--white);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: color 0.2s;
-}
-.mobile-menu a:hover { color: var(--mustard); }
-.menu-close {
-  position: absolute; top: 20px; right: 24px;
-  background: none; border: none; color: var(--white);
-  font-size: 1.8rem; cursor: pointer; line-height: 1;
-}
+.back-btn:hover { color:var(--charcoal); }
+.back-bar { padding:20px 24px 0; }
 
 /* ── HERO ── */
-.hero {
-  position: relative;
-  height: 92dvh;
-  min-height: 560px;
-  overflow: hidden;
-  display: flex; align-items: flex-end;
-}
+.hero { position:relative; height:92dvh; min-height:560px; overflow:hidden; display:flex; align-items:flex-end; }
+.hero-bg { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.72) 0%,rgba(20,20,20,0.15) 50%,transparent 100%), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1400&q=85') center/cover no-repeat; transform:scale(1.04); transition:transform 8s ease; }
+.hero:hover .hero-bg { transform:scale(1); }
+.hero-content { position:relative; z-index:2; padding:0 28px 56px; width:100%; }
+.hero-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:6px 14px; font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#fff; margin-bottom:18px; }
+.hero-tag::before { content:''; width:7px; height:7px; background:var(--mustard); border-radius:50%; }
+.hero-content h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,9vw,3.4rem); font-weight:700; color:#fff; line-height:1.15; margin-bottom:14px; }
+.hero-content h1 em { font-style:italic; color:var(--mustard); }
+.hero-content p { font-size:0.88rem; color:rgba(255,255,255,0.75); line-height:1.65; max-width:340px; margin-bottom:28px; }
+.btn-hero { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.18); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.35); color:#fff; font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; padding:14px 26px; border-radius:100px; cursor:pointer; text-decoration:none; transition:background 0.2s,border-color 0.2s,transform 0.15s; }
+.btn-hero:hover { background:rgba(255,193,7,0.3); border-color:var(--mustard); transform:translateY(-2px); }
 
-.hero-bg {
-  position: absolute; inset: 0;
-  background: 
-    linear-gradient(to top, rgba(20,20,20,0.72) 0%, rgba(20,20,20,0.15) 50%, transparent 100%),
-    url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1400&q=85') center/cover no-repeat;
-  transform: scale(1.04);
-  transition: transform 8s ease;
-}
-.hero:hover .hero-bg { transform: scale(1); }
+/* ── SECTIONS ── */
+section { padding:60px 24px; }
+.section-label { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--mustard); margin-bottom:8px; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,6vw,2.2rem); font-weight:700; line-height:1.2; color:var(--charcoal); margin-bottom:6px; }
+.section-sub { font-size:0.83rem; color:var(--gray); line-height:1.65; max-width:480px; }
 
-.hero-content {
-  position: relative; z-index: 2;
-  padding: 0 28px 56px;
-  width: 100%;
-}
+/* ABOUT */
+.about-card { background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-top:32px; }
+.about-photo { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+.about-body { padding:28px 24px; }
+.about-body h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:12px; }
+.about-body p { font-size:0.85rem; color:var(--gray); line-height:1.75; margin-bottom:20px; }
 
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 18px;
-}
-.hero-tag::before {
-  content: '';
-  width: 7px; height: 7px;
-  background: var(--mustard);
-  border-radius: 50%;
-}
+/* EXPERIENCES */
+.experiences { background:var(--charcoal); }
+.experiences .section-title { color:var(--white); }
+.experiences .section-sub { color:rgba(255,255,255,0.5); }
+.exp-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
+.exp-card { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; }
+.exp-card:nth-child(1) { grid-column:1/-1; aspect-ratio:16/9; }
+.exp-card:nth-child(n+2) { aspect-ratio:1; }
+.exp-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease; }
+.exp-card:hover .exp-img { transform:scale(1.05); }
+.exp-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:16px; }
+.exp-flag { font-size:1.1rem; margin-bottom:4px; }
+.exp-name { font-family:'Playfair Display',serif; font-size:1rem; color:#fff; line-height:1.2; }
+.exp-tag { font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--mustard); margin-top:4px; }
 
-.hero-content h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 9vw, 3.4rem);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.15;
-  margin-bottom: 14px;
-}
-.hero-content h1 em {
-  font-style: italic;
-  color: var(--mustard);
-}
-
-.hero-content p {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.65;
-  max-width: 340px;
-  margin-bottom: 28px;
-}
-
-.btn-hero {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 14px 26px;
-  border-radius: 100px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-}
-.btn-hero:hover {
-  background: rgba(255,193,7,0.3);
-  border-color: var(--mustard);
-  transform: translateY(-2px);
-}
-.btn-hero .arrow { font-size: 1rem; }
-
-/* ── SECTIONS COMMON ── */
-section { padding: 60px 24px; }
-.section-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mustard);
-  margin-bottom: 8px;
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 6vw, 2.2rem);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--charcoal);
-  margin-bottom: 6px;
-}
-.section-sub {
-  font-size: 0.83rem;
-  color: var(--gray);
-  line-height: 1.65;
-  max-width: 480px;
-}
-
-/* ── ABOUT ── */
-.about-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  margin-top: 32px;
-}
-
-.about-photo {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-}
-
-.about-body { padding: 28px 24px; }
-
-.about-body h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-}
-.about-body p {
-  font-size: 0.85rem;
-  color: var(--gray);
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-
-.about-stats {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 12px;
-  border-top: 1px solid var(--light);
-  padding-top: 20px;
-}
-.stat-item { text-align: center; }
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--charcoal);
-}
-.stat-num span { color: var(--mustard); }
-.stat-label {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gray);
-  margin-top: 2px;
-}
-
-/* ── EXPERIENCES ── */
-.experiences { background: var(--charcoal); }
-.experiences .section-title { color: var(--white); }
-.experiences .section-sub { color: rgba(255,255,255,0.5); }
-
-.exp-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 30px;
-}
-
-.exp-card {
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-}
-.exp-card:nth-child(1) { grid-column: 1/-1; aspect-ratio: 16/9; }
-.exp-card:nth-child(n+2) { aspect-ratio: 1; }
-
-.exp-img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.exp-card:hover .exp-img { transform: scale(1.05); }
-
-.exp-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 16px;
-}
-.exp-flag {
-  font-size: 1.1rem; margin-bottom: 4px;
-}
-.exp-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  color: #fff;
-  line-height: 1.2;
-}
-.exp-tag {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mustard);
-  margin-top: 4px;
-}
-
-/* ── LIFESTYLE TIPS ── */
-.tips-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 30px;
-}
-
+/* ── CATEGORY CARDS (home) ── */
+.tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
 .tip-card {
-  background: var(--card-bg);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  padding: 22px 18px;
-  display: flex; flex-direction: column; gap: 14px;
+  background:var(--card-bg); border-radius:18px; box-shadow:var(--shadow);
+  padding:22px 18px; display:flex; align-items:center; gap:14px;
+  cursor:pointer; border:2px solid transparent;
+  transition:border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
-.tip-card.wide { grid-column: 1/-1; flex-direction: row; align-items: center; }
+.tip-card:hover { border-color:var(--mustard); box-shadow:0 6px 24px rgba(255,193,7,0.15); transform:translateY(-2px); }
+.tip-icon { width:48px; height:48px; background:rgba(255,193,7,0.1); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+.tip-card h4 { font-family:'Playfair Display',serif; font-size:0.95rem; margin-bottom:4px; }
+.tip-card p { font-size:0.76rem; color:var(--gray); line-height:1.6; }
+.tip-arrow { margin-left:auto; color:var(--mustard); font-size:1rem; flex-shrink:0; }
 
-.tip-icon {
-  width: 48px; height: 48px;
-  background: rgba(255,193,7,0.1);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-.tip-card h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-}
-.tip-card p {
-  font-size: 0.76rem;
-  color: var(--gray);
-  line-height: 1.6;
-}
+/* ── PARTNER LIST PAGE ── */
+.partner-page-header { padding:28px 24px 0; }
+.partner-page-header h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin:8px 0 6px; }
+.partner-page-header p { font-size:0.83rem; color:var(--gray); }
 
-/* ── INSTAGRAM ── */
-.insta { background: var(--white); padding-bottom: 0; }
+.partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:28px 24px 60px; }
 
-.insta-scroll {
-  display: flex; gap: 12px;
-  overflow-x: auto;
-  padding: 24px 24px 32px;
-  margin: 0 -24px;
-  scrollbar-width: none;
+.partner-card {
+  background:var(--card-bg); border-radius:18px; box-shadow:var(--shadow);
+  padding:24px 20px; display:flex; flex-direction:column; gap:12px;
+  cursor:pointer; border:2px solid transparent;
+  transition:border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
-.insta-scroll::-webkit-scrollbar { display: none; }
+.partner-card:hover { border-color:var(--mustard); box-shadow:0 6px 24px rgba(255,193,7,0.15); transform:translateY(-2px); }
+.partner-emoji { font-size:2rem; }
+.partner-name { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; }
+.partner-desc { font-size:0.76rem; color:var(--gray); line-height:1.6; flex:1; }
+.partner-cta-label {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--mustard); color:var(--charcoal);
+  font-weight:700; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+  padding:9px 16px; border-radius:100px; width:fit-content;
+  transition:background 0.2s;
+}
+.partner-card:hover .partner-cta-label { background:var(--mustard2); }
 
-.insta-item {
-  flex-shrink: 0;
-  width: 160px; height: 160px;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-}
-.insta-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-.insta-item:hover img { transform: scale(1.07); }
-.insta-item::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0);
-  transition: background 0.3s;
-}
-.insta-item:hover::after { background: rgba(0,0,0,0.15); }
+/* ── FORM PAGE ── */
+.form-page-wrap { padding:28px 24px 60px; max-width:480px; }
+.form-page-wrap h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin:8px 0 6px; }
+.form-page-wrap .form-sub { font-size:0.83rem; color:var(--gray); margin-bottom:28px; line-height:1.6; }
 
-/* ── CONNECT / FOOTER ── */
-.connect {
-  background: var(--charcoal);
-  text-align: center;
-  padding: 56px 24px;
+.pf-label { font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray); margin-bottom:6px; display:block; }
+.pf-group { margin-bottom:16px; }
+.pf-input {
+  width:100%; padding:13px 16px; border:1.5px solid var(--light);
+  border-radius:12px; font-family:'Montserrat',sans-serif; font-size:0.85rem;
+  outline:none; transition:border-color 0.2s; background:#fff; color:var(--charcoal);
 }
-.connect .section-title { color: var(--white); margin: 0 auto 10px; }
-.connect .section-sub { color: rgba(255,255,255,0.45); margin: 0 auto 36px; }
+.pf-input:focus { border-color:var(--mustard); }
+.pf-submit {
+  width:100%; background:var(--charcoal); color:#fff;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem;
+  letter-spacing:0.1em; text-transform:uppercase;
+  padding:15px 20px; border-radius:100px; border:none; cursor:pointer; margin-top:8px;
+  transition:background 0.2s, transform 0.15s;
+}
+.pf-submit:hover { background:#444; transform:translateY(-1px); }
+.pf-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
 
-.social-row {
-  display: flex; justify-content: center; gap: 14px;
-  margin-bottom: 40px;
+/* Coupon reveal */
+.coupon-box {
+  display:none; text-align:center;
+  background:linear-gradient(135deg,#FFFBEE,#FFF3CD);
+  border:2px dashed var(--mustard); border-radius:20px;
+  padding:32px 24px; margin-top:8px;
 }
+.coupon-box.visible { display:block; }
+.coupon-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-bottom:10px; }
+.coupon-code { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--charcoal); letter-spacing:0.08em; }
+.coupon-extra { font-size:0.8rem; color:var(--charcoal); margin-top:10px; line-height:1.6; font-weight:600; }
+.coupon-sent { font-size:0.72rem; color:#4CAF50; margin-top:12px; font-weight:600; }
 
-.social-btn {
-  width: 52px; height: 52px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-  text-decoration: none;
-  font-size: 1.3rem;
-}
-.social-btn:hover {
-  background: rgba(255,193,7,0.15);
-  border-color: var(--mustard);
-  transform: translateY(-3px);
-}
+/* INSTAGRAM */
+.insta { background:var(--white); padding-bottom:0; }
+.insta-scroll { display:flex; gap:12px; overflow-x:auto; padding:24px 24px 32px; margin:0 -24px; scrollbar-width:none; }
+.insta-scroll::-webkit-scrollbar { display:none; }
+.insta-item { flex-shrink:0; width:160px; height:160px; border-radius:16px; overflow:hidden; }
+.insta-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
+.insta-item:hover img { transform:scale(1.07); }
 
-.connect-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--mustard);
-  color: var(--charcoal);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 15px 32px;
-  border-radius: 100px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-}
-.connect-cta:hover { background: var(--mustard2); transform: translateY(-2px); }
+/* CONNECT */
+.connect { background:var(--charcoal); text-align:center; padding:56px 24px; }
+.connect .section-title { color:var(--white); margin:0 auto 10px; }
+.connect .section-sub { color:rgba(255,255,255,0.45); margin:0 auto 36px; }
+.social-row { display:flex; justify-content:center; gap:14px; margin-bottom:40px; }
+.social-btn { width:52px; height:52px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:14px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,border-color 0.2s,transform 0.15s; text-decoration:none; }
+.social-btn:hover { background:rgba(255,193,7,0.15); border-color:var(--mustard); transform:translateY(-3px); }
+.connect-cta { display:inline-flex; align-items:center; gap:8px; background:var(--mustard); color:var(--charcoal); font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; padding:15px 32px; border-radius:100px; border:none; cursor:pointer; text-decoration:none; transition:background 0.2s,transform 0.15s; }
+.connect-cta:hover { background:var(--mustard2); transform:translateY(-2px); }
 
-.footer-line {
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding-top: 28px;
-  margin-top: 40px;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.22);
-}
-.footer-line a { color: var(--mustard); opacity: 0.5; text-decoration: none; }
-
-/* ── DESKTOP TWEAKS ── */
-@media (min-width: 768px) {
-  section { padding: 80px 48px; }
-  .about-card { display: flex; }
-  .about-photo { width: 340px; height: auto; aspect-ratio: auto; flex-shrink: 0; }
-  .about-body { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
-  .exp-grid { grid-template-columns: repeat(3,1fr); }
-  .exp-card:nth-child(1) { grid-column: auto; aspect-ratio: 1; }
-  .tips-grid { grid-template-columns: repeat(4,1fr); }
-  .tip-card.wide { grid-column: auto; flex-direction: column; }
-  .insta-item { width: 200px; height: 200px; }
+@media (min-width:768px) {
+  section { padding:80px 48px; }
+  .about-card { display:flex; }
+  .about-photo { width:340px; height:auto; aspect-ratio:auto; flex-shrink:0; }
+  .about-body { display:flex; flex-direction:column; justify-content:center; padding:40px; }
+  .exp-grid { grid-template-columns:repeat(3,1fr); }
+  .exp-card:nth-child(1) { grid-column:auto; aspect-ratio:1; }
+  .tips-grid { grid-template-columns:repeat(3,1fr); }
+  .insta-item { width:200px; height:200px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">
-    <div class="logo-mark">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/>
-        <path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/>
-        <circle cx="50" cy="55" r="8" fill="#FFC107"/>
-      </svg>
+<!-- ══════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
-    <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
-  </a>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" onclick="toggleMenu()">✕</button>
+    <a onclick="scrollToSection('about');toggleMenu()">Sobre</a>
+    <a onclick="scrollToSection('experiences');toggleMenu()">Experiências</a>
+    <a onclick="scrollToSection('lifestyle');toggleMenu()">Parceiros</a>
+    <a onclick="scrollToSection('connect');toggleMenu()">Contato</a>
+  </div>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="menu-close" onclick="toggleMenu()">✕</button>
-  <a href="#about" onclick="toggleMenu()">Sobre</a>
-  <a href="#experiences" onclick="toggleMenu()">Experiências</a>
-  <a href="#lifestyle" onclick="toggleMenu()">Parceiros</a>
-  <a href="#connect" onclick="toggleMenu()">Contato</a>
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🌍 Baseados na Europa</div>
+      <h1>Viva a Europa<br><em>com a gente.</em></h1>
+      <p>Viver, viajar e inspirar.</p>
+      <a href="#experiences" class="btn-hero">Explorar Experiências <span>↓</span></a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-label">Quem Somos</div>
+    <h2 class="section-title">A Nossa História</h2>
+    <p class="section-sub">Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.</p>
+    <div class="about-card">
+      <img class="about-photo" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Nós Por Aí">
+      <div class="about-body">
+        <h3>Olá, somos o Lucas & Mari! 👋</h3>
+        <p>Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiences" class="experiences">
+    <div class="section-label">Destinos</div>
+    <h2 class="section-title">Experiências<br>Inesquecíveis</h2>
+    <p class="section-sub">Os lugares que nos mudaram por dentro.</p>
+    <div class="exp-grid">
+      <div class="exp-card"><img class="exp-img" src="https://images.unsplash.com/photo-1500313830540-7b6650a74fd0?w=900&q=80" alt=""><div class="exp-overlay"><div class="exp-flag">🇮🇹</div><div class="exp-name">Costa Amalfitana</div><div class="exp-tag">Itália · 5 dias</div></div></div>
+      <div class="exp-card"><img class="exp-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt=""><div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Santorini</div><div class="exp-tag">Grécia</div></div></div>
+      <div class="exp-card"><img class="exp-img" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt=""><div class="exp-overlay"><div class="exp-flag">🇫🇷</div><div class="exp-name">Paris</div><div class="exp-tag">França</div></div></div>
+    </div>
+  </section>
+
+  <section id="lifestyle">
+    <div class="section-label">Nossos Parceiros</div>
+    <h2 class="section-title">Categorias de Parceiros</h2>
+    <p class="section-sub">Descontos e vantagens exclusivas para a nossa comunidade.</p>
+    <div class="tips-grid">
+      <div class="tip-card" onclick="goPage('page-cat-viagem')">
+        <div class="tip-icon">✈️</div>
+        <div><h4>Viagem</h4><p>Descontos e vantagens para as suas viagens.</p></div>
+        <span class="tip-arrow">›</span>
+      </div>
+      <div class="tip-card" onclick="goPage('page-cat-casa')">
+        <div class="tip-icon">🏠</div>
+        <div><h4>Casa</h4><p>Os melhores parceiros para reformar a tua casa na Irlanda.</p></div>
+        <span class="tip-arrow">›</span>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🥗</div>
+        <div><h4>Alimentação</h4><p>Restaurantes, delivery e produtos com descontos exclusivos.</p></div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">💅</div>
+        <div><h4>Estética</h4><p>Salões, clínicas e produtos de beleza recomendados por nós.</p></div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🌍</div>
+        <div><h4>Intercâmbio</h4><p>Agências para quem quer viver a experiência europeia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="insta">
+    <div class="section-label">Instagram</div>
+    <h2 class="section-title">@nosporai.ofc</h2>
+    <div class="insta-scroll">
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=80" alt=""></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt=""></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt=""></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt=""></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&q=80" alt=""></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400&q=80" alt=""></div>
+    </div>
+  </section>
+
+  <section id="connect" class="connect">
+    <div class="section-label">Conecta Connosco</div>
+    <h2 class="section-title">Vamos nos conectar?</h2>
+    <p class="section-sub">Parcerias, perguntas ou só para dizer olá — estamos por aqui.</p>
+    <div class="social-row">
+      <a class="social-btn" href="https://instagram.com/nosporai.ofc" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#FFC107" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="#FFC107" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#FFC107"/></svg>
+      </a>
+      <a class="social-btn" href="#" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="5" stroke="#FFC107" stroke-width="2"/><polygon points="10,8.5 10,15.5 16,12" fill="#FFC107"/></svg>
+      </a>
+    </div>
+    <a class="connect-cta" href="mailto:nosporaiofc@gmail.com">✉️ &nbsp;Enviar Email</a>
+  </section>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-content">
-    <div class="hero-tag">🌍 Baseados na Europa</div>
-    <h1>Viva a Europa<br><em>com a gente.</em></h1>
-    <p>Viver, viajar e inspirar.</p>
-    <a href="#experiences" class="btn-hero">
-      Explorar Experiências
-      <span class="arrow">↓</span>
-    </a>
+
+<!-- ══════════════════════════════════════
+     PAGE: CATEGORIA VIAGEM
+════════════════════════════════════════ -->
+<div class="page" id="page-cat-viagem">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← Voltar</button></div>
+  <div class="partner-page-header">
+    <div class="section-label">Parceiros · Viagem</div>
+    <h2>✈️ Viagem</h2>
+    <p>Escolha o parceiro e garanta o seu desconto exclusivo.</p>
   </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">Quem Somos</div>
-  <h2 class="section-title">A Nossa História</h2>
-  <p class="section-sub">Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.</p>
-
-  <div class="about-card">
-    <img class="about-photo"
-      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
-      alt="Nós Por Aí casal">
-    <div class="about-body">
-      <h3>Olá, somos o Lucas & Mari! 👋</h3>
-      <p>Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
+  <div class="partner-grid">
+    <div class="partner-card" onclick="window.open('https://airalo.go.link/8Af26','_blank')">
+      <div class="partner-emoji">📱</div>
+      <div class="partner-name">Airalo</div>
+      <div class="partner-desc">eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.</div>
+      <div class="partner-cta-label">Acessar parceiro →</div>
     </div>
-  </div>
-</section>
-
-<!-- EXPERIENCES -->
-<section id="experiences" class="experiences">
-  <div class="section-label">Destinos</div>
-  <h2 class="section-title">Experiências<br>Inesquecíveis</h2>
-  <p class="section-sub">Os lugares que nos mudaram por dentro.</p>
-
-  <div class="exp-grid">
-    <div class="exp-card">
-      <img class="exp-img" src="https://images.unsplash.com/photo-1500313830540-7b6650a74fd0?w=900&q=80" alt="Amalfi Coast">
-      <div class="exp-overlay">
-        <div class="exp-flag">🇮🇹</div>
-        <div class="exp-name">Costa Amalfitana</div>
-        <div class="exp-tag">Itália · 5 dias</div>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img class="exp-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Santorini">
-      <div class="exp-overlay">
-        <div class="exp-flag">🇬🇷</div>
-        <div class="exp-name">Santorini</div>
-        <div class="exp-tag">Grécia</div>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img class="exp-img" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Paris">
-      <div class="exp-overlay">
-        <div class="exp-flag">🇫🇷</div>
-        <div class="exp-name">Paris</div>
-        <div class="exp-tag">França</div>
-      </div>
+    <div class="partner-card" onclick="window.open('https://assist-365.com?voucher=nosporai365&utm_source=instagram&utm_medium=affiliate','_blank')">
+      <div class="partner-emoji">🛡️</div>
+      <div class="partner-name">Assist365</div>
+      <div class="partner-desc">Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.</div>
+      <div class="partner-cta-label">Acessar parceiro →</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PARCEIROS -->
-<section id="lifestyle">
-  <div class="section-label">Nossos Parceiros</div>
-  <h2 class="section-title">Categorias de Parceiros</h2>
-  <p class="section-sub">Descontos e vantagens exclusivas para a nossa comunidade.</p>
 
-  <div class="tips-grid">
-    <div class="tip-card">
-      <div class="tip-icon">✈️</div>
-      <div>
-        <h4>Viagem</h4>
-        <p>Garanta descontos e vantagens para suas viagens.</p>
-      </div>
+<!-- ══════════════════════════════════════
+     PAGE: CATEGORIA CASA
+════════════════════════════════════════ -->
+<div class="page" id="page-cat-casa">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
-    <div class="tip-card">
-      <div class="tip-icon">🏠</div>
-      <div>
-        <h4>Casa</h4>
-        <p>Tudo para reformar a tua casa na Irlanda com os melhores parceiros.</p>
-      </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← Voltar</button></div>
+  <div class="partner-page-header">
+    <div class="section-label">Parceiros · Casa</div>
+    <h2>🏠 Casa</h2>
+    <p>Escolha o parceiro e garanta o seu desconto exclusivo.</p>
+  </div>
+  <div class="partner-grid">
+    <div class="partner-card" onclick="goPage('page-sunvolt')">
+      <div class="partner-emoji">☀️</div>
+      <div class="partner-name">Sunvolt</div>
+      <div class="partner-desc">Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.</div>
+      <div class="partner-cta-label">Quero meu desconto →</div>
     </div>
-    <div class="tip-card">
-      <div class="tip-icon">🥗</div>
-      <div>
-        <h4>Alimentação</h4>
-        <p>Restaurantes, delivery e produtos alimentares com descontos exclusivos.</p>
-      </div>
-    </div>
-    <div class="tip-card">
-      <div class="tip-icon">💅</div>
-      <div>
-        <h4>Estética</h4>
-        <p>Salões, clínicas e produtos de beleza recomendados por nós.</p>
-      </div>
-    </div>
-    <div class="tip-card">
-      <div class="tip-icon">🌍</div>
-      <div>
-        <h4>Intercâmbio</h4>
-        <p>Agências e programas de intercâmbio para quem quer viver a experiência europeia.</p>
-      </div>
+    <div class="partner-card" onclick="goPage('page-greenmoon')">
+      <div class="partner-emoji">🌿</div>
+      <div class="partner-name">Greenmoon</div>
+      <div class="partner-desc">Landscape &amp; Patio — transforme o seu jardim e pátio com quem entende do assunto.</div>
+      <div class="partner-cta-label">Quero meu desconto →</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- INSTAGRAM -->
-<section class="insta">
-  <div class="section-label">Instagram</div>
-  <h2 class="section-title">@nosporai.ofc</h2>
-  <div class="insta-scroll">
-    <div class="insta-item"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=80" alt=""></div>
-    <div class="insta-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt=""></div>
-    <div class="insta-item"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt=""></div>
-    <div class="insta-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt=""></div>
-    <div class="insta-item"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&q=80" alt=""></div>
-    <div class="insta-item"><img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400&q=80" alt=""></div>
+
+<!-- ══════════════════════════════════════
+     PAGE: FORM SUNVOLT
+════════════════════════════════════════ -->
+<div class="page" id="page-sunvolt">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← Voltar</button></div>
+  <div class="form-page-wrap">
+    <div class="section-label">Parceiro · Casa</div>
+    <h2>☀️ Sunvolt</h2>
+    <p class="form-sub">Preencha os seus dados para receber o código de desconto exclusivo para placas solares.</p>
+
+    <div id="sunvolt-form-wrap">
+      <div class="pf-group"><label class="pf-label">Nome</label><input class="pf-input" id="sv-nome" type="text" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label">Sobrenome</label><input class="pf-input" id="sv-sobrenome" type="text" placeholder="O seu sobrenome"></div>
+      <div class="pf-group"><label class="pf-label">WhatsApp (Irlanda)</label><input class="pf-input" id="sv-whatsapp" type="tel" placeholder="+353 xx xxx xxxx"></div>
+      <button class="pf-submit" id="btn-sv" onclick="submitForm('sunvolt')">Quero meu desconto</button>
+    </div>
+
+    <div class="coupon-box" id="coupon-sunvolt">
+      <div class="coupon-label">O seu código exclusivo</div>
+      <div class="coupon-code">SV200</div>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- CONNECT / FOOTER -->
-<section id="connect" class="connect">
-  <div class="section-label">Conecta Connosco</div>
-  <h2 class="section-title">Vamos nos conectar?</h2>
-  <p class="section-sub">Parcerias, perguntas ou só para dizer olá — estamos por aqui.</p>
 
-  <div class="social-row">
-    <a class="social-btn" href="https://instagram.com/nosporai.ofc" target="_blank" title="Instagram">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="20" height="20" rx="6" stroke="#FFC107" stroke-width="2"/>
-        <circle cx="12" cy="12" r="4.5" stroke="#FFC107" stroke-width="2"/>
-        <circle cx="17.5" cy="6.5" r="1.2" fill="#FFC107"/>
-      </svg>
-    </a>
-    <a class="social-btn" href="#" target="_blank" title="YouTube">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="4" width="20" height="16" rx="5" stroke="#FFC107" stroke-width="2"/>
-        <polygon points="10,8.5 10,15.5 16,12" fill="#FFC107"/>
-      </svg>
-    </a>
+<!-- ══════════════════════════════════════
+     PAGE: FORM GREENMOON
+════════════════════════════════════════ -->
+<div class="page" id="page-greenmoon">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← Voltar</button></div>
+  <div class="form-page-wrap">
+    <div class="section-label">Parceiro · Casa</div>
+    <h2>🌿 Greenmoon</h2>
+    <p class="form-sub">Preencha os seus dados para receber o código de desconto exclusivo para Landscape &amp; Patio.</p>
 
+    <div id="greenmoon-form-wrap">
+      <div class="pf-group"><label class="pf-label">Nome</label><input class="pf-input" id="gm-nome" type="text" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label">Sobrenome</label><input class="pf-input" id="gm-sobrenome" type="text" placeholder="O seu sobrenome"></div>
+      <div class="pf-group"><label class="pf-label">WhatsApp (Irlanda)</label><input class="pf-input" id="gm-whatsapp" type="tel" placeholder="+353 xx xxx xxxx"></div>
+      <button class="pf-submit" id="btn-gm" onclick="submitForm('greenmoon')">Quero meu desconto</button>
+    </div>
+
+    <div class="coupon-box" id="coupon-greenmoon">
+      <div class="coupon-label">O seu código exclusivo</div>
+      <div class="coupon-code">GM5OFF</div>
+      <div class="coupon-extra">Ganhe 5% de desconto no seu orçamento 🎉</div>
+    </div>
   </div>
+</div>
 
-  <a class="connect-cta" href="mailto:hello@nosporai.com">
-    ✉️ &nbsp;Enviar Email
-  </a>
-
-
-</section>
 
 <script>
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.body.style.overflow =
-    document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
-}
+  emailjs.init(EMAILJS_PUBLIC_KEY);
 
-// Subtle parallax on hero bg
-window.addEventListener('scroll', () => {
-  const bg = document.getElementById('heroBg');
-  if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
-}, { passive: true });
+  /* ── Navigation ── */
+  function goPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  function goHome() { goPage('page-home'); }
+
+  /* ── Mobile menu ── */
+  function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  }
+  function scrollToSection(id) {
+    goHome();
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }), 80);
+  }
+
+  /* ── Hero parallax ── */
+  window.addEventListener('scroll', () => {
+    const bg = document.getElementById('heroBg');
+    if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
+  }, { passive:true });
+
+  /* ── Form submit ── */
+  function submitForm(partner) {
+    const pre   = partner === 'sunvolt' ? 'sv' : 'gm';
+    const nome  = document.getElementById(pre+'-nome').value.trim();
+    const sob   = document.getElementById(pre+'-sobrenome').value.trim();
+    const wa    = document.getElementById(pre+'-whatsapp').value.trim();
+    const btn   = document.getElementById('btn-'+pre);
+
+    if (!nome || !sob || !wa) { alert('Por favor, preencha todos os campos.'); return; }
+    if (!wa.startsWith('+353')) { alert('O número deve começar com o código da Irlanda: +353'); return; }
+
+    const info   = partner === 'sunvolt' ? 'Sunvolt (SV200)' : 'Greenmoon (GM5OFF)';
+    const code   = partner === 'sunvolt' ? 'SV200' : 'GM5OFF';
+
+    btn.disabled = true;
+    btn.textContent = 'A enviar...';
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email:  'nosporaiofc@gmail.com',
+      from_name: nome + ' ' + sob,
+      whatsapp:  wa,
+      partner:   info,
+      coupon:    code,
+      message:   `Novo pedido de desconto!\nParceiro: ${info}\nNome: ${nome} ${sob}\nWhatsApp: ${wa}\nCódigo: ${code}`
+    }).then(showCoupon).catch(showCoupon);
+
+    function showCoupon() {
+      document.getElementById(partner+'-form-wrap').style.display = 'none';
+      document.getElementById('coupon-'+partner).classList.add('visible');
+    }
+  }
 </script>
 </body>
 </html>
