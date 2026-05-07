@@ -88,6 +88,10 @@ section { padding:60px 24px; }
 .exp-flag { font-size:1.1rem; margin-bottom:4px; }
 .exp-name { font-family:'Playfair Display',serif; font-size:1rem; color:#fff; line-height:1.2; }
 .exp-tag { font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--mustard); margin-top:4px; }
+a.exp-card { text-decoration:none; display:block; }
+.exp-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:52px; height:52px; background:rgba(255,255,255,0.25); backdrop-filter:blur(6px); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s, transform 0.2s; }
+a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translate(-50%,-50%) scale(1.1); }
+.exp-play svg { margin-left:4px; }
 
 .tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
 .tip-card { background:var(--card-bg); border-radius:18px; box-shadow:var(--shadow); padding:22px 18px; display:flex; align-items:center; gap:14px; cursor:pointer; border:2px solid transparent; transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s; }
