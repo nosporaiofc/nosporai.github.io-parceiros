@@ -498,13 +498,18 @@ section { padding:60px 24px; }
     btn.disabled = true;
     btn.textContent = 'A enviar...';
 
+    const now = new Date();
+    const data = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+    const categoria = partner === 'sunvolt' ? 'Casa' : 'Casa';
+
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      to_email:  'nosporaiofc@gmail.com',
-      from_name: nome + ' ' + sob,
-      whatsapp:  wa,
-      partner:   info,
-      coupon:    code,
-      message:   `Novo pedido de desconto!\nParceiro: ${info}\nNome: ${nome} ${sob}\nWhatsApp: ${wa}\nCódigo: ${code}`
+      nome:      nome,
+      sobrenome: sob,
+      email:     wa,
+      parceiro:  info,
+      categoria: categoria,
+      voucher:   code,
+      data:      data
     }).then(showCoupon).catch(showCoupon);
 
     function showCoupon() {
