@@ -22,11 +22,9 @@
 html { scroll-behavior:smooth; }
 body { background:var(--white); color:var(--charcoal); font-family:'Montserrat',sans-serif; overflow-x:hidden; }
 
-/* ── PAGE SYSTEM ── */
 .page { display:none; min-height:100dvh; }
 .page.active { display:block; }
 
-/* ── NAV ── */
 nav {
   position:sticky; top:0; z-index:100;
   background:rgba(249,249,249,0.92); backdrop-filter:blur(14px);
@@ -44,19 +42,16 @@ nav {
 .hamburger span:nth-child(1){width:22px;} .hamburger span:nth-child(2){width:16px;} .hamburger span:nth-child(3){width:22px;}
 .hamburger:hover span { width:22px; }
 
-/* MOBILE MENU */
 .mobile-menu { position:fixed; inset:0; z-index:200; background:var(--charcoal); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); }
 .mobile-menu.open { transform:translateX(0); }
 .mobile-menu a { font-family:'Playfair Display',serif; font-size:2rem; color:var(--white); text-decoration:none; letter-spacing:0.04em; transition:color 0.2s; cursor:pointer; }
 .mobile-menu a:hover { color:var(--mustard); }
 .menu-close { position:absolute; top:20px; right:24px; background:none; border:none; color:var(--white); font-size:1.8rem; cursor:pointer; }
 
-/* ── BACK BUTTON ── */
 .back-btn { display:inline-flex; align-items:center; gap:8px; background:none; border:none; cursor:pointer; font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gray); padding:0; transition:color 0.2s; }
 .back-btn:hover { color:var(--charcoal); }
 .back-bar { padding:20px 24px 0; }
 
-/* ── HERO ── */
 .hero { position:relative; height:92dvh; min-height:560px; overflow:hidden; display:flex; align-items:flex-end; }
 .hero-bg { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.72) 0%,rgba(20,20,20,0.15) 50%,transparent 100%), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1400&q=85') center/cover no-repeat; transform:scale(1.04); transition:transform 8s ease; }
 .hero:hover .hero-bg { transform:scale(1); }
@@ -69,20 +64,17 @@ nav {
 .btn-hero { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.18); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.35); color:#fff; font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; padding:14px 26px; border-radius:100px; cursor:pointer; text-decoration:none; transition:background 0.2s,border-color 0.2s,transform 0.15s; }
 .btn-hero:hover { background:rgba(255,193,7,0.3); border-color:var(--mustard); transform:translateY(-2px); }
 
-/* ── SECTIONS ── */
 section { padding:60px 24px; }
 .section-label { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--mustard); margin-bottom:8px; }
 .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,6vw,2.2rem); font-weight:700; line-height:1.2; color:var(--charcoal); margin-bottom:6px; }
 .section-sub { font-size:0.83rem; color:var(--gray); line-height:1.65; max-width:480px; }
 
-/* ABOUT */
 .about-card { background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-top:32px; }
 .about-photo { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
 .about-body { padding:28px 24px; }
 .about-body h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:12px; }
 .about-body p { font-size:0.85rem; color:var(--gray); line-height:1.75; margin-bottom:20px; }
 
-/* EXPERIENCES */
 .experiences { background:var(--charcoal); }
 .experiences .section-title { color:var(--white); }
 .experiences .section-sub { color:rgba(255,255,255,0.5); }
@@ -97,7 +89,6 @@ section { padding:60px 24px; }
 .exp-name { font-family:'Playfair Display',serif; font-size:1rem; color:#fff; line-height:1.2; }
 .exp-tag { font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--mustard); margin-top:4px; }
 
-/* ── CATEGORY CARDS ── */
 .tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
 .tip-card { background:var(--card-bg); border-radius:18px; box-shadow:var(--shadow); padding:22px 18px; display:flex; align-items:center; gap:14px; cursor:pointer; border:2px solid transparent; transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s; }
 .tip-card:hover { border-color:var(--mustard); box-shadow:0 6px 24px rgba(255,193,7,0.15); transform:translateY(-2px); }
@@ -106,7 +97,6 @@ section { padding:60px 24px; }
 .tip-card p { font-size:0.76rem; color:var(--gray); line-height:1.6; }
 .tip-arrow { margin-left:auto; color:var(--mustard); font-size:1rem; flex-shrink:0; }
 
-/* ── PARTNER LIST PAGE ── */
 .partner-page-header { padding:28px 24px 0; }
 .partner-page-header h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin:8px 0 6px; }
 .partner-page-header p { font-size:0.83rem; color:var(--gray); }
@@ -119,7 +109,6 @@ section { padding:60px 24px; }
 .partner-cta-label { display:inline-flex; align-items:center; gap:6px; background:var(--mustard); color:var(--charcoal); font-weight:700; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; padding:9px 16px; border-radius:100px; width:fit-content; transition:background 0.2s; }
 .partner-card:hover .partner-cta-label { background:var(--mustard2); }
 
-/* ── FORM PAGE ── */
 .form-page-wrap { padding:28px 24px 60px; max-width:480px; }
 .form-page-wrap h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin:8px 0 6px; }
 .form-page-wrap .form-sub { font-size:0.83rem; color:var(--gray); margin-bottom:28px; line-height:1.6; }
@@ -131,7 +120,6 @@ section { padding:60px 24px; }
 .pf-submit:hover { background:#444; transform:translateY(-1px); }
 .pf-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
 
-/* Coupon */
 .coupon-box { display:none; text-align:center; background:linear-gradient(135deg,#FFFBEE,#FFF3CD); border:2px dashed var(--mustard); border-radius:20px; padding:32px 24px; margin-top:8px; }
 .coupon-box.visible { display:block; }
 .coupon-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-bottom:10px; }
@@ -140,7 +128,6 @@ section { padding:60px 24px; }
 .coupon-wa { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; padding:13px 24px; border-radius:100px; text-decoration:none; margin-top:16px; transition:background 0.2s,transform 0.15s; }
 .coupon-wa:hover { background:#1ebe5d; transform:translateY(-2px); }
 
-/* INSTAGRAM */
 .insta { background:var(--white); padding-bottom:0; }
 .insta-scroll { display:flex; gap:12px; overflow-x:auto; padding:24px 24px 32px; margin:0 -24px; scrollbar-width:none; }
 .insta-scroll::-webkit-scrollbar { display:none; }
@@ -148,7 +135,6 @@ section { padding:60px 24px; }
 .insta-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
 .insta-item:hover img { transform:scale(1.07); }
 
-/* CONNECT */
 .connect { background:var(--charcoal); text-align:center; padding:56px 24px; }
 .connect .section-title { color:var(--white); margin:0 auto 10px; }
 .connect .section-sub { color:rgba(255,255,255,0.45); margin:0 auto 36px; }
@@ -172,9 +158,7 @@ section { padding:60px 24px; }
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     PAGE: HOME
-════════════════════════════════════════ -->
+<!-- PAGE: HOME -->
 <div class="page active" id="page-home">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -206,7 +190,8 @@ section { padding:60px 24px; }
     <h2 class="section-title">A Nossa História</h2>
     <p class="section-sub">Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.</p>
     <div class="about-card">
-      <img class="about-photo" src="https://github.com/nosporaiofc/nosporai.github.io-parceiros/blob/main/images/1.jpg?raw=true" alt="Nós Por Aí">
+      <!-- ✏️ FOTO SOBRE: substitui o link abaixo -->
+      <img class="about-photo" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/1.jpg" alt="Nós Por Aí">
       <div class="about-body">
         <h3>Olá, somos o Lucas & Mari! 👋</h3>
         <p>Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
@@ -219,9 +204,12 @@ section { padding:60px 24px; }
     <h2 class="section-title">Conheça o Nosso Canal no<br>YOUTUBE</h2>
     <p class="section-sub">Viagens que nos mudam por dentro.</p>
     <div class="exp-grid">
-      <div class="exp-card"><img class="exp-img" src="https://github.com/nosporaiofc/nosporai.github.io-parceiros/blob/main/images/2.jpg?raw=true" alt=""><div class="exp-overlay"><div class="exp-flag">🇮🇹</div><div class="exp-name">Ilhas Gregas</div><div class="exp-tag">Grécia · </div></div></div>
-      <div class="exp-card"><img class="exp-img" src="https://github.com/nosporaiofc/nosporai.github.io-parceiros/blob/main/images/3.jpg?raw=true" alt=""><div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Mallorca</div><div class="exp-tag">Espanha</div></div></div>
-      <div class="exp-card"><img class="exp-img" src="https://github.com/nosporaiofc/nosporai.github.io-parceiros/blob/main/images/4.png?raw=true" alt=""><div class="exp-overlay"><div class="exp-flag">🇫🇷</div><div class="exp-name">Islândia</div><div class="exp-tag">Islândia</div></div></div>
+      <!-- ✏️ FOTO DESTINO 1 -->
+      <div class="exp-card"><img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/2.jpg" alt=""><div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Ilhas Gregas</div><div class="exp-tag">Grécia</div></div></div>
+      <!-- ✏️ FOTO DESTINO 2 -->
+      <div class="exp-card"><img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/3.jpg" alt=""><div class="exp-overlay"><div class="exp-flag">🇪🇸</div><div class="exp-name">Mallorca</div><div class="exp-tag">Espanha</div></div></div>
+      <!-- ✏️ FOTO DESTINO 3 -->
+      <div class="exp-card"><img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/4.png" alt=""><div class="exp-overlay"><div class="exp-flag">🇮🇸</div><div class="exp-name">Islândia</div><div class="exp-tag">Islândia</div></div></div>
     </div>
   </section>
 
@@ -259,6 +247,7 @@ section { padding:60px 24px; }
     <div class="section-label">Instagram</div>
     <h2 class="section-title">@nosporai.ofc</h2>
     <div class="insta-scroll">
+      <!-- ✏️ FOTOS INSTAGRAM: substitui os links abaixo pelos teus (raw.githubusercontent.com) -->
       <div class="insta-item"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=80" alt=""></div>
       <div class="insta-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt=""></div>
       <div class="insta-item"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt=""></div>
@@ -285,9 +274,7 @@ section { padding:60px 24px; }
 </div>
 
 
-<!-- ══════════════════════════════════════
-     PAGE: CATEGORIA VIAGEM
-════════════════════════════════════════ -->
+<!-- PAGE: CATEGORIA VIAGEM -->
 <div class="page" id="page-cat-viagem">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -318,9 +305,7 @@ section { padding:60px 24px; }
 </div>
 
 
-<!-- ══════════════════════════════════════
-     PAGE: CATEGORIA CASA
-════════════════════════════════════════ -->
+<!-- PAGE: CATEGORIA CASA -->
 <div class="page" id="page-cat-casa">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -351,9 +336,7 @@ section { padding:60px 24px; }
 </div>
 
 
-<!-- ══════════════════════════════════════
-     PAGE: FORM SUNVOLT
-════════════════════════════════════════ -->
+<!-- PAGE: FORM SUNVOLT -->
 <div class="page" id="page-sunvolt">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -366,14 +349,12 @@ section { padding:60px 24px; }
     <div class="section-label">Parceiro · Casa</div>
     <h2>☀️ Sunvolt</h2>
     <p class="form-sub">Preencha os seus dados para receber o código de desconto exclusivo para placas solares.</p>
-
     <div id="sunvolt-form-wrap">
       <div class="pf-group"><label class="pf-label">Nome</label><input class="pf-input" id="sv-nome" type="text" placeholder="O seu nome"></div>
       <div class="pf-group"><label class="pf-label">Sobrenome</label><input class="pf-input" id="sv-sobrenome" type="text" placeholder="O seu sobrenome"></div>
       <div class="pf-group"><label class="pf-label">WhatsApp (Irlanda)</label><input class="pf-input" id="sv-whatsapp" type="tel" placeholder="+353 xx xxx xxxx"></div>
       <button class="pf-submit" id="btn-sv" onclick="submitForm('sunvolt')">Quero meu desconto</button>
     </div>
-
     <div class="coupon-box" id="coupon-sunvolt">
       <div class="coupon-label">O seu código exclusivo</div>
       <div class="coupon-code">SV200</div>
@@ -386,9 +367,7 @@ section { padding:60px 24px; }
 </div>
 
 
-<!-- ══════════════════════════════════════
-     PAGE: FORM GREENMOON
-════════════════════════════════════════ -->
+<!-- PAGE: FORM GREENMOON -->
 <div class="page" id="page-greenmoon">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -401,14 +380,12 @@ section { padding:60px 24px; }
     <div class="section-label">Parceiro · Casa</div>
     <h2>🌿 Greenmoon</h2>
     <p class="form-sub">Preencha os seus dados para receber o código de desconto exclusivo para Landscape &amp; Patio.</p>
-
     <div id="greenmoon-form-wrap">
       <div class="pf-group"><label class="pf-label">Nome</label><input class="pf-input" id="gm-nome" type="text" placeholder="O seu nome"></div>
       <div class="pf-group"><label class="pf-label">Sobrenome</label><input class="pf-input" id="gm-sobrenome" type="text" placeholder="O seu sobrenome"></div>
       <div class="pf-group"><label class="pf-label">WhatsApp (Irlanda)</label><input class="pf-input" id="gm-whatsapp" type="tel" placeholder="+353 xx xxx xxxx"></div>
       <button class="pf-submit" id="btn-gm" onclick="submitForm('greenmoon')">Quero meu desconto</button>
     </div>
-
     <div class="coupon-box" id="coupon-greenmoon">
       <div class="coupon-label">O seu código exclusivo</div>
       <div class="coupon-code">GM5OFF</div>
@@ -421,7 +398,6 @@ section { padding:60px 24px; }
 <script>
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  /* ── Navigation ── */
   function goPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -429,7 +405,6 @@ section { padding:60px 24px; }
   }
   function goHome() { goPage('page-home'); }
 
-  /* ── Mobile menu ── */
   function toggleMenu() {
     const m = document.getElementById('mobileMenu');
     m.classList.toggle('open');
@@ -440,13 +415,11 @@ section { padding:60px 24px; }
     setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }), 80);
   }
 
-  /* ── Hero parallax ── */
   window.addEventListener('scroll', () => {
     const bg = document.getElementById('heroBg');
     if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
   }, { passive:true });
 
-  /* ── Form submit ── */
   function submitForm(partner) {
     const pre  = partner === 'sunvolt' ? 'sv' : 'gm';
     const nome = document.getElementById(pre+'-nome').value.trim();
