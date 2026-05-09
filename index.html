@@ -33,8 +33,8 @@ nav {
   padding:0 24px; height:62px;
 }
 .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; cursor:pointer; }
-.logo-mark { width:36px; height:36px; background:var(--charcoal); border-radius:10px; display:flex; align-items:center; justify-content:center; }
-.logo-mark svg { width:22px; height:22px; }
+.logo-mark { width:36px; height:36px; border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.logo-mark img { width:100%; height:100%; object-fit:cover; }
 .logo-wordmark { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal); }
 .logo-wordmark span { color:var(--mustard); }
 .hamburger { width:36px; height:36px; border:none; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:5px; }
@@ -53,7 +53,7 @@ nav {
 .back-bar { padding:20px 24px 0; }
 
 .hero { position:relative; height:92dvh; min-height:560px; overflow:hidden; display:flex; align-items:flex-end; }
-.hero-bg { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.72) 0%,rgba(20,20,20,0.15) 50%,transparent 100%), url('https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/01.jpg') center/cover no-repeat; transform:scale(1.04); transition:transform 8s ease; }
+.hero-bg { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.72) 0%,rgba(20,20,20,0.15) 50%,transparent 100%), url('https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/01.jpg') center top/cover no-repeat; transform:scale(1); transition:transform 8s ease; }
 .hero:hover .hero-bg { transform:scale(1); }
 .hero-content { position:relative; z-index:2; padding:0 28px 56px; width:100%; }
 .hero-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:6px 14px; font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#fff; margin-bottom:18px; }
@@ -78,10 +78,8 @@ section { padding:60px 24px; }
 .experiences { background:var(--charcoal); }
 .experiences .section-title { color:var(--white); }
 .experiences .section-sub { color:rgba(255,255,255,0.5); }
-.exp-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
-.exp-card { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; }
-.exp-card:nth-child(1) { grid-column:1/-1; aspect-ratio:16/9; }
-.exp-card:nth-child(n+2) { aspect-ratio:1; }
+.exp-grid { display:grid; grid-template-columns:1fr; gap:14px; margin-top:30px; }
+.exp-card { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; aspect-ratio:16/9; }
 .exp-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease; }
 .exp-card:hover .exp-img { transform:scale(1.05); }
 .exp-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:16px; }
@@ -153,8 +151,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
   .about-card { display:flex; }
   .about-photo { width:340px; height:auto; aspect-ratio:auto; flex-shrink:0; }
   .about-body { display:flex; flex-direction:column; justify-content:center; padding:40px; }
-  .exp-grid { grid-template-columns:repeat(3,1fr); }
-  .exp-card:nth-child(1) { grid-column:auto; aspect-ratio:1; }
+  .exp-grid { grid-template-columns:repeat(2,1fr); }
   .tips-grid { grid-template-columns:repeat(3,1fr); }
   .insta-item { width:200px; height:200px; }
 }
@@ -162,11 +159,14 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 </head>
 <body>
 
+<!-- NAV LOGO SNIPPET (reutilizado em todas as páginas) -->
+<!-- logo-mark agora usa <img> em vez de SVG inline -->
+
 <!-- PAGE: HOME -->
 <div class="page active" id="page-home">
   <nav>
     <div class="nav-logo" onclick="goHome()">
-      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
     <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
@@ -182,7 +182,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
   <section class="hero">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-content">
-      <div class="hero-tag">🌍 Baseados na Europa</div>
+      <div class="hero-tag">🌍 Irlanda </div>
       <h1>Nós Por Aí</h1>
       <p>Viver, viajar e inspirar.</p>
       <a href="#experiences" class="btn-hero">Explorar Experiências <span>↓</span></a>
@@ -194,8 +194,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
     <h2 class="section-title">A Nossa História</h2>
     <p class="section-sub">Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.</p>
     <div class="about-card">
-      <!-- ✏️ FOTO SOBRE: substitui o link abaixo -->
-      <img class="about-photo" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/1.jpg?raw=true" alt="Nós Por Aí">
+      <img class="about-photo" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/1.jpg" alt="Nós Por Aí">
       <div class="about-body">
         <h3>Olá, somos o Lucas & Mari! 👋</h3>
         <p>Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
@@ -248,13 +247,12 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
     <div class="section-label">Instagram</div>
     <h2 class="section-title">@nosporai.ofc</h2>
     <div class="insta-scroll">
-      <!-- ✏️ FOTOS INSTAGRAM: substitui os links abaixo pelos teus (raw.githubusercontent.com) -->
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&q=80" alt=""></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt=""></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt=""></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt=""></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&q=80" alt=""></div>
-      <div class="insta-item"><img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400&q=80" alt=""></div>
+      <div class="insta-item"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/insta1.jpg" alt=""></div>
+      <div class="insta-item"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/insta2.jpg" alt=""></div>
+      <div class="insta-item"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/insta3.jpg" alt=""></div>
+      <div class="insta-item"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/insta4.jpg" alt=""></div>
+      <div class="insta-item"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/insta5.jpg" alt=""></div>
+      <div class="insta-item"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/insta6.jpg" alt=""></div>
     </div>
   </section>
 
@@ -279,7 +277,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 <div class="page" id="page-cat-viagem">
   <nav>
     <div class="nav-logo" onclick="goHome()">
-      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
   </nav>
@@ -310,11 +308,11 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 <div class="page" id="page-cat-casa">
   <nav>
     <div class="nav-logo" onclick="goHome()">
-      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
   </nav>
-  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← Voltar</button></div>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← Voltar</button></div>
   <div class="partner-page-header">
     <div class="section-label">Parceiros · Casa</div>
     <h2>🏠 Casa</h2>
@@ -341,7 +339,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 <div class="page" id="page-sunvolt">
   <nav>
     <div class="nav-logo" onclick="goHome()">
-      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
   </nav>
@@ -372,7 +370,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 <div class="page" id="page-greenmoon">
   <nav>
     <div class="nav-logo" onclick="goHome()">
-      <div class="logo-mark"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="#FFC107" stroke-width="6"/><path d="M50 22 Q62 40 50 50 Q38 40 50 22Z" fill="#FFC107"/><circle cx="50" cy="55" r="8" fill="#FFC107"/></svg></div>
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
   </nav>
