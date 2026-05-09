@@ -13,7 +13,7 @@
   const EMAILJS_TEMPLATE_ID = 'template_q2hqan9';
 </script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 :root {
   --white:#F9F9F9; --charcoal:#2D3132; --mustard:#FFC107; --mustard2:#FFD54F;
   --gray:#7A8490; --light:#EFEFEF; --card-bg:#FFFFFF;
@@ -25,13 +25,7 @@ body { background:var(--white); color:var(--charcoal); font-family:'Montserrat',
 .page { display:none; min-height:100dvh; }
 .page.active { display:block; }
 
-nav {
-  position:sticky; top:0; z-index:100;
-  background:rgba(249,249,249,0.92); backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(0,0,0,0.05);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 24px; height:62px;
-}
+nav { position:sticky; top:0; z-index:100; background:rgba(249,249,249,0.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(0,0,0,0.05); display:flex; align-items:center; justify-content:space-between; padding:0 24px; height:62px; }
 .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; cursor:pointer; }
 .logo-mark { width:36px; height:36px; border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
 .logo-mark img { width:100%; height:100%; object-fit:cover; }
@@ -53,13 +47,11 @@ nav {
 .back-bar { padding:20px 24px 0; }
 
 .hero { position:relative; height:92dvh; min-height:560px; overflow:hidden; display:flex; align-items:flex-end; }
-.hero-bg { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.72) 0%,rgba(20,20,20,0.15) 50%,transparent 100%), url('https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/01.jpg') center top/cover no-repeat; transform:scale(1); transition:transform 8s ease; }
-.hero:hover .hero-bg { transform:scale(1); }
+.hero-bg { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.72) 0%,rgba(20,20,20,0.15) 50%,transparent 100%), url('https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/01.jpg') center top/cover no-repeat; transform:scale(1); }
 .hero-content { position:relative; z-index:2; padding:0 28px 56px; width:100%; }
 .hero-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:6px 14px; font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#fff; margin-bottom:18px; }
 .hero-tag::before { content:''; width:7px; height:7px; background:var(--mustard); border-radius:50%; }
 .hero-content h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,9vw,3.4rem); font-weight:700; color:#fff; line-height:1.15; margin-bottom:14px; }
-.hero-content h1 em { font-style:italic; color:var(--mustard); }
 .hero-content p { font-size:0.88rem; color:rgba(255,255,255,0.75); line-height:1.65; max-width:340px; margin-bottom:28px; }
 .btn-hero { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.18); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.35); color:#fff; font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; padding:14px 26px; border-radius:100px; cursor:pointer; text-decoration:none; transition:background 0.2s,border-color 0.2s,transform 0.15s; }
 .btn-hero:hover { background:rgba(255,193,7,0.3); border-color:var(--mustard); transform:translateY(-2px); }
@@ -73,22 +65,21 @@ section { padding:60px 24px; }
 .about-photo { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
 .about-body { padding:28px 24px; }
 .about-body h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:12px; }
-.about-body p { font-size:0.85rem; color:var(--gray); line-height:1.75; margin-bottom:20px; }
+.about-body p { font-size:0.85rem; color:var(--gray); line-height:1.75; }
 
 .experiences { background:var(--charcoal); }
 .experiences .section-title { color:var(--white); }
 .experiences .section-sub { color:rgba(255,255,255,0.5); }
 .exp-grid { display:grid; grid-template-columns:1fr; gap:14px; margin-top:30px; }
-.exp-card { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; aspect-ratio:16/9; }
+.exp-card { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; aspect-ratio:16/9; display:block; text-decoration:none; }
 .exp-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease; }
 .exp-card:hover .exp-img { transform:scale(1.05); }
 .exp-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:16px; }
 .exp-flag { font-size:1.1rem; margin-bottom:4px; }
 .exp-name { font-family:'Playfair Display',serif; font-size:1rem; color:#fff; line-height:1.2; }
 .exp-tag { font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--mustard); margin-top:4px; }
-a.exp-card { text-decoration:none; display:block; }
-.exp-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:52px; height:52px; background:rgba(255,255,255,0.25); backdrop-filter:blur(6px); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s, transform 0.2s; }
-a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translate(-50%,-50%) scale(1.1); }
+.exp-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:52px; height:52px; background:rgba(255,255,255,0.25); backdrop-filter:blur(6px); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s,transform 0.2s; }
+.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translate(-50%,-50%) scale(1.1); }
 .exp-play svg { margin-left:4px; }
 
 .tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
@@ -99,6 +90,21 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 .tip-card p { font-size:0.76rem; color:var(--gray); line-height:1.6; }
 .tip-arrow { margin-left:auto; color:var(--mustard); font-size:1rem; flex-shrink:0; }
 
+.insta { background:var(--white); padding-bottom:0; }
+.insta-scroll { display:flex; gap:12px; overflow-x:auto; padding:24px 24px 32px; margin:0 -24px; scrollbar-width:none; }
+.insta-scroll::-webkit-scrollbar { display:none; }
+.insta-item { flex-shrink:0; width:160px; height:160px; border-radius:16px; overflow:hidden; display:block; }
+.insta-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
+.insta-item:hover img { transform:scale(1.07); }
+
+.connect { background:var(--charcoal); text-align:center; padding:56px 24px; }
+.connect .section-title { color:var(--white); margin:0 auto 10px; }
+.connect .section-sub { color:rgba(255,255,255,0.45); margin:0 auto 36px; }
+.social-row { display:flex; justify-content:center; gap:14px; }
+.social-btn { width:52px; height:52px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:14px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,border-color 0.2s,transform 0.15s; text-decoration:none; }
+.social-btn:hover { background:rgba(255,193,7,0.15); border-color:var(--mustard); transform:translateY(-3px); }
+
+/* PARTNER PAGES */
 .partner-page-header { padding:28px 24px 0; }
 .partner-page-header h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin:8px 0 6px; }
 .partner-page-header p { font-size:0.83rem; color:var(--gray); }
@@ -111,6 +117,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 .partner-cta-label { display:inline-flex; align-items:center; gap:6px; background:var(--mustard); color:var(--charcoal); font-weight:700; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; padding:9px 16px; border-radius:100px; width:fit-content; transition:background 0.2s; }
 .partner-card:hover .partner-cta-label { background:var(--mustard2); }
 
+/* FORM PAGES */
 .form-page-wrap { padding:28px 24px 60px; max-width:480px; }
 .form-page-wrap h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin:8px 0 6px; }
 .form-page-wrap .form-sub { font-size:0.83rem; color:var(--gray); margin-bottom:28px; line-height:1.6; }
@@ -121,7 +128,6 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 .pf-submit { width:100%; background:var(--charcoal); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; padding:15px 20px; border-radius:100px; border:none; cursor:pointer; margin-top:8px; transition:background 0.2s,transform 0.15s; }
 .pf-submit:hover { background:#444; transform:translateY(-1px); }
 .pf-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
-
 .coupon-box { display:none; text-align:center; background:linear-gradient(135deg,#FFFBEE,#FFF3CD); border:2px dashed var(--mustard); border-radius:20px; padding:32px 24px; margin-top:8px; }
 .coupon-box.visible { display:block; }
 .coupon-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-bottom:10px; }
@@ -129,22 +135,6 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 .coupon-extra { font-size:0.82rem; color:var(--charcoal); margin-top:10px; line-height:1.6; font-weight:600; }
 .coupon-wa { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; padding:13px 24px; border-radius:100px; text-decoration:none; margin-top:16px; transition:background 0.2s,transform 0.15s; }
 .coupon-wa:hover { background:#1ebe5d; transform:translateY(-2px); }
-
-.insta { background:var(--white); padding-bottom:0; }
-.insta-scroll { display:flex; gap:12px; overflow-x:auto; padding:24px 24px 32px; margin:0 -24px; scrollbar-width:none; }
-.insta-scroll::-webkit-scrollbar { display:none; }
-.insta-item { flex-shrink:0; width:160px; height:160px; border-radius:16px; overflow:hidden; }
-.insta-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
-.insta-item:hover img { transform:scale(1.07); }
-
-.connect { background:var(--charcoal); text-align:center; padding:56px 24px; }
-.connect .section-title { color:var(--white); margin:0 auto 10px; }
-.connect .section-sub { color:rgba(255,255,255,0.45); margin:0 auto 36px; }
-.social-row { display:flex; justify-content:center; gap:14px; margin-bottom:40px; }
-.social-btn { width:52px; height:52px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:14px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,border-color 0.2s,transform 0.15s; text-decoration:none; }
-.social-btn:hover { background:rgba(255,193,7,0.15); border-color:var(--mustard); transform:translateY(-3px); }
-.connect-cta { display:inline-flex; align-items:center; gap:8px; background:var(--mustard); color:var(--charcoal); font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; padding:15px 32px; border-radius:100px; border:none; cursor:pointer; text-decoration:none; transition:background 0.2s,transform 0.15s; }
-.connect-cta:hover { background:var(--mustard2); transform:translateY(-2px); }
 
 @media (min-width:768px) {
   section { padding:80px 48px; }
@@ -159,10 +149,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 </head>
 <body>
 
-<!-- NAV LOGO SNIPPET (reutilizado em todas as páginas) -->
-<!-- logo-mark agora usa <img> em vez de SVG inline -->
-
-<!-- PAGE: HOME -->
+<!-- ══ PAGE: HOME ══ -->
 <div class="page active" id="page-home">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -207,9 +194,21 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
     <h2 class="section-title">Conheça o Nosso Canal no<br>YOUTUBE</h2>
     <p class="section-sub">Viagens que nos mudam por dentro.</p>
     <div class="exp-grid">
-      <a href="https://youtu.be/yDDKbWwaFZI" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/YT1.jpg" alt="Santorini"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Santorini (Grécia)</div><div class="exp-tag">Ilhas Gregas</div></div></a>
-      <a href="https://youtu.be/HmfF1Hl1fig" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/YT2.jpg" alt="Andorra"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇦🇩</div><div class="exp-name">Andorra</div><div class="exp-tag">Melhor estação de Ski da Europa</div></div></a>
-      <a href="https://youtu.be/1P3oVXPAhO0" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/yt3.jpg" alt="Sicília"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇮🇹</div><div class="exp-name">Sicília</div><div class="exp-tag">San Vito lo Capo · Mondello · Favignana</div></div></a>
+      <a href="https://youtu.be/yDDKbWwaFZI" target="_blank" rel="noopener noreferrer" class="exp-card">
+        <img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/YT1.jpg" alt="Santorini">
+        <div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Santorini (Grécia)</div><div class="exp-tag">Ilhas Gregas</div></div>
+      </a>
+      <a href="https://youtu.be/HmfF1Hl1fig" target="_blank" rel="noopener noreferrer" class="exp-card">
+        <img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/YT2.jpg" alt="Andorra">
+        <div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="exp-overlay"><div class="exp-flag">🇦🇩</div><div class="exp-name">Andorra</div><div class="exp-tag">Melhor estação de Ski da Europa</div></div>
+      </a>
+      <a href="https://youtu.be/1P3oVXPAhO0" target="_blank" rel="noopener noreferrer" class="exp-card">
+        <img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/yt3.jpg" alt="Sicília">
+        <div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="exp-overlay"><div class="exp-flag">🇮🇹</div><div class="exp-name">Sicília</div><div class="exp-tag">San Vito lo Capo · Mondello · Favignana</div></div>
+      </a>
     </div>
   </section>
 
@@ -268,20 +267,11 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="5" stroke="#FFC107" stroke-width="2"/><polygon points="10,8.5 10,15.5 16,12" fill="#FFC107"/></svg>
       </a>
     </div>
-    <a class="connect-cta" onclick="toggleContactForm()" style="cursor:pointer;">✉️ &nbsp;Enviar Email</a>
-
-    <div class="contact-form-wrap" id="contactForm">
-      <div class="pf-group"><label class="pf-label">O seu nome</label><input class="pf-input" id="cf-nome" type="text" placeholder="Nome completo"></div>
-      <div class="pf-group"><label class="pf-label">O seu email</label><input class="pf-input" id="cf-email" type="email" placeholder="email@exemplo.com"></div>
-      <div class="pf-group"><label class="pf-label">Mensagem</label><textarea class="contact-textarea" id="cf-msg" placeholder="Escreve a tua mensagem..."></textarea></div>
-      <button class="connect-cta" id="btn-cf" onclick="submitContact()" style="width:100%;justify-content:center;">Enviar Mensagem</button>
-      <div class="contact-success" id="cf-success">✅ Mensagem enviada com sucesso!</div>
-    </div>
   </section>
 </div>
 
 
-<!-- PAGE: CATEGORIA VIAGEM -->
+<!-- ══ PAGE: VIAGEM ══ -->
 <div class="page" id="page-cat-viagem">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -312,7 +302,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 </div>
 
 
-<!-- PAGE: CATEGORIA CASA -->
+<!-- ══ PAGE: CASA ══ -->
 <div class="page" id="page-cat-casa">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -343,7 +333,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 </div>
 
 
-<!-- PAGE: FORM SUNVOLT -->
+<!-- ══ PAGE: SUNVOLT ══ -->
 <div class="page" id="page-sunvolt">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -374,7 +364,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
 </div>
 
 
-<!-- PAGE: FORM GREENMOON -->
+<!-- ══ PAGE: GREENMOON ══ -->
 <div class="page" id="page-greenmoon">
   <nav>
     <div class="nav-logo" onclick="goHome()">
@@ -427,38 +417,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
     if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
   }, { passive:true });
 
-  function toggleContactForm() {
-    document.getElementById('contactForm').classList.toggle('visible');
-  }
-
-  function submitContact() {
-    const nome  = document.getElementById('cf-nome').value.trim();
-    const email = document.getElementById('cf-email').value.trim();
-    const msg   = document.getElementById('cf-msg').value.trim();
-    const btn   = document.getElementById('btn-cf');
-
-    if (!nome || !email || !msg) { alert('Por favor, preencha todos os campos.'); return; }
-
-    btn.disabled = true;
-    btn.textContent = 'A enviar...';
-
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      nome:      nome,
-      sobrenome: '',
-      whatsapp:  email,
-      parceiro:  'Contacto via site',
-      categoria: 'Geral',
-      voucher:   '—',
-      data:      new Date().toLocaleDateString('pt-BR')
-    }).then(() => {
-      document.getElementById('cf-success').style.display = 'block';
-      btn.textContent = 'Enviado ✓';
-    }).catch(() => {
-      btn.disabled = false;
-      btn.textContent = 'Enviar Mensagem';
-      alert('Erro ao enviar. Tenta novamente.');
-    });
-  }
+  function submitForm(partner) {
     const pre  = partner === 'sunvolt' ? 'sv' : 'gm';
     const nome = document.getElementById(pre+'-nome').value.trim();
     const sob  = document.getElementById(pre+'-sobrenome').value.trim();
