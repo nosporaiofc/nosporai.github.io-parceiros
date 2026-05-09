@@ -182,7 +182,7 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
   <section class="hero">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-content">
-      <div class="hero-tag">🌍 Irlanda </div>
+      <div class="hero-tag">🌍 Baseados na Europa</div>
       <h1>Nós Por Aí</h1>
       <p>Viver, viajar e inspirar.</p>
       <a href="#experiences" class="btn-hero">Explorar Experiências <span>↓</span></a>
@@ -207,9 +207,9 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
     <h2 class="section-title">Conheça o Nosso Canal no<br>YOUTUBE</h2>
     <p class="section-sub">Viagens que nos mudam por dentro.</p>
     <div class="exp-grid">
-      <a href="https://youtu.be/yDDKbWwaFZI" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://img.youtube.com/vi/yDDKbWwaFZI/maxresdefault.jpg" alt="Grécia"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Grécia</div><div class="exp-tag">Ilhas Gregas</div></div></a>
+      <a href="https://youtu.be/yDDKbWwaFZI" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://img.youtube.com/vi/yDDKbWwaFZI/hqdefault.jpg" alt="Grécia"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Grécia</div><div class="exp-tag">Ilhas Gregas</div></div></a>
       <a href="https://youtu.be/_9mwkFi-D00" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://img.youtube.com/vi/_9mwkFi-D00/maxresdefault.jpg" alt="Mallorca"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇪🇸</div><div class="exp-name">Mallorca</div><div class="exp-tag">Espanha</div></div></a>
-      <a href="https://youtu.be/mXrZxPSjHXI" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://img.youtube.com/vi/mXrZxPSjHXI/maxresdefault.jpg" alt="Islândia"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇮🇸</div><div class="exp-name">Islândia</div><div class="exp-tag">Islândia</div></div></a>
+      <a href="https://youtu.be/mXrZxPSjHXI" target="_blank" rel="noopener noreferrer" class="exp-card"><img class="exp-img" src="https://img.youtube.com/vi/mXrZxPSjHXI/hqdefault.jpg" alt="Islândia"><div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div><div class="exp-overlay"><div class="exp-flag">🇮🇸</div><div class="exp-name">Islândia</div><div class="exp-tag">Islândia</div></div></a>
     </div>
   </section>
 
@@ -268,7 +268,15 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="5" stroke="#FFC107" stroke-width="2"/><polygon points="10,8.5 10,15.5 16,12" fill="#FFC107"/></svg>
       </a>
     </div>
-    <a class="connect-cta" href="mailto:nosporaiofc@gmail.com">✉️ &nbsp;Enviar Email</a>
+    <a class="connect-cta" onclick="toggleContactForm()" style="cursor:pointer;">✉️ &nbsp;Enviar Email</a>
+
+    <div class="contact-form-wrap" id="contactForm">
+      <div class="pf-group"><label class="pf-label">O seu nome</label><input class="pf-input" id="cf-nome" type="text" placeholder="Nome completo"></div>
+      <div class="pf-group"><label class="pf-label">O seu email</label><input class="pf-input" id="cf-email" type="email" placeholder="email@exemplo.com"></div>
+      <div class="pf-group"><label class="pf-label">Mensagem</label><textarea class="contact-textarea" id="cf-msg" placeholder="Escreve a tua mensagem..."></textarea></div>
+      <button class="connect-cta" id="btn-cf" onclick="submitContact()" style="width:100%;justify-content:center;">Enviar Mensagem</button>
+      <div class="contact-success" id="cf-success">✅ Mensagem enviada com sucesso!</div>
+    </div>
   </section>
 </div>
 
@@ -419,7 +427,38 @@ a.exp-card:hover .exp-play { background:rgba(255,193,7,0.85); transform:translat
     if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
   }, { passive:true });
 
-  function submitForm(partner) {
+  function toggleContactForm() {
+    document.getElementById('contactForm').classList.toggle('visible');
+  }
+
+  function submitContact() {
+    const nome  = document.getElementById('cf-nome').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const msg   = document.getElementById('cf-msg').value.trim();
+    const btn   = document.getElementById('btn-cf');
+
+    if (!nome || !email || !msg) { alert('Por favor, preencha todos os campos.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'A enviar...';
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      nome:      nome,
+      sobrenome: '',
+      whatsapp:  email,
+      parceiro:  'Contacto via site',
+      categoria: 'Geral',
+      voucher:   '—',
+      data:      new Date().toLocaleDateString('pt-BR')
+    }).then(() => {
+      document.getElementById('cf-success').style.display = 'block';
+      btn.textContent = 'Enviado ✓';
+    }).catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Enviar Mensagem';
+      alert('Erro ao enviar. Tenta novamente.');
+    });
+  }
     const pre  = partner === 'sunvolt' ? 'sv' : 'gm';
     const nome = document.getElementById(pre+'-nome').value.trim();
     const sob  = document.getElementById(pre+'-sobrenome').value.trim();
