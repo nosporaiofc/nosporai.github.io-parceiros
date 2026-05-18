@@ -31,6 +31,10 @@ nav { position:sticky; top:0; z-index:100; background:rgba(249,249,249,0.92); ba
 .logo-mark img { width:100%; height:100%; object-fit:cover; }
 .logo-wordmark { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal); }
 .logo-wordmark span { color:var(--mustard); }
+.nav-right { display:flex; align-items:center; gap:12px; }
+.lang-switch { display:flex; align-items:center; gap:4px; background:rgba(0,0,0,0.05); border-radius:100px; padding:4px; }
+.lang-btn { background:none; border:none; cursor:pointer; font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.7rem; letter-spacing:0.08em; color:var(--gray); padding:5px 10px; border-radius:100px; transition:background 0.2s,color 0.2s; }
+.lang-btn.active { background:var(--charcoal); color:#fff; }
 .hamburger { width:36px; height:36px; border:none; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:5px; }
 .hamburger span { display:block; height:2px; background:var(--charcoal); border-radius:2px; transition:width 0.2s; }
 .hamburger span:nth-child(1){width:22px;} .hamburger span:nth-child(2){width:16px;} .hamburger span:nth-child(3){width:22px;}
@@ -136,6 +140,21 @@ section { padding:60px 24px; }
 .coupon-wa { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; padding:13px 24px; border-radius:100px; text-decoration:none; margin-top:16px; transition:background 0.2s,transform 0.15s; }
 .coupon-wa:hover { background:#1ebe5d; transform:translateY(-2px); }
 
+/* LANGUAGE MODAL */
+.lang-modal { position:fixed; inset:0; z-index:9999; background:rgba(20,20,20,0.85); backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+.lang-modal.show { opacity:1; pointer-events:auto; }
+.lang-modal-box { background:var(--white); border-radius:24px; max-width:420px; width:100%; padding:40px 28px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3); transform:translateY(20px); transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+.lang-modal.show .lang-modal-box { transform:translateY(0); }
+.lang-modal-logo { width:64px; height:64px; border-radius:16px; overflow:hidden; margin:0 auto 18px; }
+.lang-modal-logo img { width:100%; height:100%; object-fit:cover; }
+.lang-modal-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--charcoal); margin-bottom:6px; line-height:1.25; }
+.lang-modal-sub { font-size:0.85rem; color:var(--gray); margin-bottom:28px; line-height:1.5; }
+.lang-options { display:flex; flex-direction:column; gap:12px; }
+.lang-option { display:flex; align-items:center; gap:14px; background:#fff; border:2px solid var(--light); border-radius:16px; padding:16px 20px; cursor:pointer; font-family:'Montserrat',sans-serif; font-size:1rem; font-weight:600; color:var(--charcoal); transition:border-color 0.2s,background 0.2s,transform 0.15s; text-align:left; }
+.lang-option:hover { border-color:var(--mustard); background:#FFFBEE; transform:translateY(-2px); }
+.lang-option-flag { font-size:1.6rem; }
+.lang-option-arrow { margin-left:auto; color:var(--mustard); font-size:1.2rem; }
+
 @media (min-width:768px) {
   section { padding:80px 48px; }
   .about-card { display:flex; }
@@ -149,6 +168,29 @@ section { padding:60px 24px; }
 </head>
 <body>
 
+<!-- ══ LANGUAGE SELECTION MODAL ══ -->
+<div class="lang-modal" id="langModal">
+  <div class="lang-modal-box">
+    <div class="lang-modal-logo">
+      <img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo">
+    </div>
+    <h2 class="lang-modal-title">Bem-vindo! / Welcome!</h2>
+    <p class="lang-modal-sub">Escolha o seu idioma<br>Choose your language</p>
+    <div class="lang-options">
+      <button class="lang-option" onclick="selectLanguage('pt')">
+        <span class="lang-option-flag">🇧🇷</span>
+        <span>Português</span>
+        <span class="lang-option-arrow">→</span>
+      </button>
+      <button class="lang-option" onclick="selectLanguage('en')">
+        <span class="lang-option-flag">🇬🇧</span>
+        <span>English</span>
+        <span class="lang-option-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ PAGE: HOME ══ -->
 <div class="page active" id="page-home">
   <nav>
@@ -156,88 +198,94 @@ section { padding:60px 24px; }
       <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
-    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
+      <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <button class="menu-close" onclick="toggleMenu()">✕</button>
-    <a onclick="scrollToSection('about');toggleMenu()">Sobre</a>
-    <a onclick="scrollToSection('experiences');toggleMenu()">Experiências</a>
-    <a onclick="scrollToSection('lifestyle');toggleMenu()">Parceiros</a>
-    <a onclick="scrollToSection('connect');toggleMenu()">Contato</a>
+    <a onclick="scrollToSection('about');toggleMenu()" data-i18n="menu_about">Sobre</a>
+    <a onclick="scrollToSection('experiences');toggleMenu()" data-i18n="menu_experiences">Experiências</a>
+    <a onclick="scrollToSection('lifestyle');toggleMenu()" data-i18n="menu_partners">Parceiros</a>
+    <a onclick="scrollToSection('connect');toggleMenu()" data-i18n="menu_contact">Contato</a>
   </div>
 
   <section class="hero">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-content">
-      <div class="hero-tag">🇮🇪 Irlanda</div>
+      <div class="hero-tag" data-i18n="hero_tag">🇮🇪 Irlanda</div>
       <h1>Nós Por Aí</h1>
-      <p>Viver, viajar e inspirar.</p>
-      <a href="#experiences" class="btn-hero">Explorar Experiências <span>↓</span></a>
+      <p data-i18n="hero_sub">Viver, viajar e inspirar.</p>
+      <a href="#experiences" class="btn-hero"><span data-i18n="hero_btn">Explorar Experiências</span> <span>↓</span></a>
     </div>
   </section>
 
   <section id="about">
-    <div class="section-label">Quem Somos</div>
-    <h2 class="section-title">A Nossa História</h2>
-    <p class="section-sub">Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.</p>
+    <div class="section-label" data-i18n="about_label">Quem Somos</div>
+    <h2 class="section-title" data-i18n="about_title">A Nossa História</h2>
+    <p class="section-sub" data-i18n="about_sub">Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.</p>
     <div class="about-card">
       <img class="about-photo" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/1.jpg" alt="Nós Por Aí">
       <div class="about-body">
-        <h3>Olá, somos o Lucas & Mari! 👋</h3>
-        <p>Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
+        <h3 data-i18n="about_greeting">Olá, somos o Lucas & Mari! 👋</h3>
+        <p data-i18n="about_body">Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
       </div>
     </div>
   </section>
 
   <section id="experiences" class="experiences">
-    <div class="section-label">Destinos</div>
-    <h2 class="section-title">Conheça o Nosso Canal no<br>YOUTUBE</h2>
-    <p class="section-sub">Viagens que nos mudam por dentro.</p>
+    <div class="section-label" data-i18n="exp_label">Destinos</div>
+    <h2 class="section-title" data-i18n="exp_title" data-i18n-html="true">Conheça o Nosso Canal no<br>YOUTUBE</h2>
+    <p class="section-sub" data-i18n="exp_sub">Viagens que nos mudam por dentro.</p>
     <div class="exp-grid">
       <a href="https://youtu.be/yDDKbWwaFZI" target="_blank" rel="noopener noreferrer" class="exp-card">
         <img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/YT1.jpg" alt="Santorini">
         <div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name">Santorini (Grécia)</div><div class="exp-tag">Ilhas Gregas</div></div>
+        <div class="exp-overlay"><div class="exp-flag">🇬🇷</div><div class="exp-name" data-i18n="exp_santorini">Santorini (Grécia)</div><div class="exp-tag" data-i18n="exp_santorini_tag">Ilhas Gregas</div></div>
       </a>
       <a href="https://youtu.be/HmfF1Hl1fig" target="_blank" rel="noopener noreferrer" class="exp-card">
         <img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/YT2.jpg" alt="Andorra">
         <div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="exp-overlay"><div class="exp-flag">🇦🇩</div><div class="exp-name">Andorra</div><div class="exp-tag">Melhor estação de Ski da Europa</div></div>
+        <div class="exp-overlay"><div class="exp-flag">🇦🇩</div><div class="exp-name">Andorra</div><div class="exp-tag" data-i18n="exp_andorra_tag">Melhor estação de Ski da Europa</div></div>
       </a>
       <a href="https://youtu.be/1P3oVXPAhO0" target="_blank" rel="noopener noreferrer" class="exp-card">
         <img class="exp-img" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/yt3.jpg" alt="Sicília">
         <div class="exp-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="exp-overlay"><div class="exp-flag">🇮🇹</div><div class="exp-name">Sicília</div><div class="exp-tag">San Vito lo Capo · Mondello · Favignana</div></div>
+        <div class="exp-overlay"><div class="exp-flag">🇮🇹</div><div class="exp-name" data-i18n="exp_sicilia">Sicília</div><div class="exp-tag">San Vito lo Capo · Mondello · Favignana</div></div>
       </a>
     </div>
   </section>
 
   <section id="lifestyle">
-    <div class="section-label">Nossos Parceiros</div>
-    <h2 class="section-title">Categorias de Parceiros</h2>
-    <p class="section-sub">Descontos e vantagens exclusivas para a nossa comunidade.</p>
+    <div class="section-label" data-i18n="partners_label">Nossos Parceiros</div>
+    <h2 class="section-title" data-i18n="partners_title">Categorias de Parceiros</h2>
+    <p class="section-sub" data-i18n="partners_sub">Descontos e vantagens exclusivas para a nossa comunidade.</p>
     <div class="tips-grid">
       <div class="tip-card" onclick="goPage('page-cat-viagem')">
         <div class="tip-icon">✈️</div>
-        <div><h4>Viagem</h4><p>Descontos e vantagens para as suas viagens.</p></div>
+        <div><h4 data-i18n="cat_travel">Viagem</h4><p data-i18n="cat_travel_desc">Descontos e vantagens para as suas viagens.</p></div>
         <span class="tip-arrow">›</span>
       </div>
       <div class="tip-card" onclick="goPage('page-cat-casa')">
         <div class="tip-icon">🏠</div>
-        <div><h4>Casa</h4><p>Os melhores parceiros para reformar a tua casa na Irlanda.</p></div>
+        <div><h4 data-i18n="cat_home">Casa</h4><p data-i18n="cat_home_desc">Os melhores parceiros para reformar a tua casa na Irlanda.</p></div>
         <span class="tip-arrow">›</span>
       </div>
       <div class="tip-card">
         <div class="tip-icon">🥗</div>
-        <div><h4>Alimentação</h4><p>Restaurantes, delivery e produtos com descontos exclusivos.</p></div>
+        <div><h4 data-i18n="cat_food">Alimentação</h4><p data-i18n="cat_food_desc">Restaurantes, delivery e produtos com descontos exclusivos.</p></div>
       </div>
       <div class="tip-card">
         <div class="tip-icon">💅</div>
-        <div><h4>Estética</h4><p>Salões, clínicas e produtos de beleza recomendados por nós.</p></div>
+        <div><h4 data-i18n="cat_beauty">Estética</h4><p data-i18n="cat_beauty_desc">Salões, clínicas e produtos de beleza recomendados por nós.</p></div>
       </div>
       <div class="tip-card">
         <div class="tip-icon">🌍</div>
-        <div><h4>Intercâmbio</h4><p>Agências para quem quer viver a experiência europeia.</p></div>
+        <div><h4 data-i18n="cat_exchange">Intercâmbio</h4><p data-i18n="cat_exchange_desc">Agências para quem quer viver a experiência europeia.</p></div>
       </div>
     </div>
   </section>
@@ -256,9 +304,9 @@ section { padding:60px 24px; }
   </section>
 
   <section id="connect" class="connect">
-    <div class="section-label">Conecta Connosco</div>
-    <h2 class="section-title">Vamos nos conectar?</h2>
-    <p class="section-sub">Parcerias, perguntas ou só para dizer olá — estamos por aqui.</p>
+    <div class="section-label" data-i18n="connect_label">Conecta Connosco</div>
+    <h2 class="section-title" data-i18n="connect_title">Vamos nos conectar?</h2>
+    <p class="section-sub" data-i18n="connect_sub">Parcerias, perguntas ou só para dizer olá — estamos por aqui.</p>
     <div class="social-row">
       <a class="social-btn" href="https://instagram.com/nosporai.ofc" target="_blank">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#FFC107" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="#FFC107" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#FFC107"/></svg>
@@ -278,25 +326,29 @@ section { padding:60px 24px; }
       <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
   </nav>
-  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← Voltar</button></div>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="partner-page-header">
-    <div class="section-label">Parceiros · Viagem</div>
-    <h2>✈️ Viagem</h2>
-    <p>Escolha o parceiro e garanta o seu desconto exclusivo.</p>
+    <div class="section-label" data-i18n="partners_travel_label">Parceiros · Viagem</div>
+    <h2>✈️ <span data-i18n="cat_travel">Viagem</span></h2>
+    <p data-i18n="partner_choose">Escolha o parceiro e garanta o seu desconto exclusivo.</p>
   </div>
   <div class="partner-grid">
     <div class="partner-card" onclick="window.open('https://airalo.go.link/8Af26','_blank')">
       <div class="partner-emoji">📱</div>
       <div class="partner-name">Airalo</div>
-      <div class="partner-desc">eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.</div>
-      <div class="partner-cta-label">Acessar parceiro →</div>
+      <div class="partner-desc" data-i18n="airalo_desc">eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.</div>
+      <div class="partner-cta-label" data-i18n="access_partner">Acessar parceiro →</div>
     </div>
     <div class="partner-card" onclick="window.open('https://assist-365.com?voucher=nosporai365&utm_source=instagram&utm_medium=affiliate','_blank')">
       <div class="partner-emoji">🛡️</div>
       <div class="partner-name">Assist365</div>
-      <div class="partner-desc">Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.</div>
-      <div class="partner-cta-label">Acessar parceiro →</div>
+      <div class="partner-desc" data-i18n="assist_desc">Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.</div>
+      <div class="partner-cta-label" data-i18n="access_partner">Acessar parceiro →</div>
     </div>
   </div>
 </div>
@@ -309,25 +361,29 @@ section { padding:60px 24px; }
       <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
   </nav>
-  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← Voltar</button></div>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="partner-page-header">
-    <div class="section-label">Parceiros · Casa</div>
-    <h2>🏠 Casa</h2>
-    <p>Escolha o parceiro e garanta o seu desconto exclusivo.</p>
+    <div class="section-label" data-i18n="partners_home_label">Parceiros · Casa</div>
+    <h2>🏠 <span data-i18n="cat_home">Casa</span></h2>
+    <p data-i18n="partner_choose">Escolha o parceiro e garanta o seu desconto exclusivo.</p>
   </div>
   <div class="partner-grid">
     <div class="partner-card" onclick="goPage('page-sunvolt')">
       <div class="partner-emoji">☀️</div>
       <div class="partner-name">Sunvolt</div>
-      <div class="partner-desc">Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.</div>
-      <div class="partner-cta-label">Quero meu desconto →</div>
+      <div class="partner-desc" data-i18n="sunvolt_desc">Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.</div>
+      <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-greenmoon')">
       <div class="partner-emoji">🌿</div>
       <div class="partner-name">Greenmoon</div>
-      <div class="partner-desc">Landscape &amp; Patio — transforme o seu jardim e pátio com quem entende do assunto.</div>
-      <div class="partner-cta-label">Quero meu desconto →</div>
+      <div class="partner-desc" data-i18n="greenmoon_desc">Landscape &amp; Patio — transforme o seu jardim e pátio com quem entende do assunto.</div>
+      <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
   </div>
 </div>
@@ -340,23 +396,27 @@ section { padding:60px 24px; }
       <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
   </nav>
-  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← Voltar</button></div>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
-    <div class="section-label">Parceiro · Casa</div>
+    <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
     <h2>☀️ Sunvolt</h2>
-    <p class="form-sub">Preencha os seus dados para receber o código de desconto exclusivo para placas solares.</p>
+    <p class="form-sub" data-i18n="sunvolt_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para placas solares.</p>
     <div id="sunvolt-form-wrap">
-      <div class="pf-group"><label class="pf-label">Nome</label><input class="pf-input" id="sv-nome" type="text" placeholder="O seu nome"></div>
-      <div class="pf-group"><label class="pf-label">Sobrenome</label><input class="pf-input" id="sv-sobrenome" type="text" placeholder="O seu sobrenome"></div>
-      <div class="pf-group"><label class="pf-label">WhatsApp (Irlanda)</label><input class="pf-input" id="sv-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
-      <button class="pf-submit" id="btn-sv" onclick="submitForm('sunvolt')">Quero meu desconto</button>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="sv-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="sv-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_whatsapp">WhatsApp (Irlanda)</label><input class="pf-input" id="sv-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
+      <button class="pf-submit" id="btn-sv" onclick="submitForm('sunvolt')" data-i18n="want_discount_btn">Quero meu desconto</button>
     </div>
     <div class="coupon-box" id="coupon-sunvolt">
-      <div class="coupon-label">O seu código exclusivo</div>
+      <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
       <div class="coupon-code">SV200</div>
-      <div class="coupon-extra">Peça o seu desconto de 200€ 🎉</div>
-      <a class="coupon-wa" href="https://wa.me/353838760465?text=Olá%20Igor!%20☀️%20Gostaria%20de%20um%20orçamento%20de%20energia%20solar.%20Vim%20pelo%20Nós%20Por%20Aí%20e%20tenho%20o%20voucher%20SV200." target="_blank">
+      <div class="coupon-extra" data-i18n="sunvolt_coupon_extra">Peça o seu desconto de 200€ 🎉</div>
+      <a class="coupon-wa" href="https://wa.me/353838760465?text=Olá%20Igor!%20☀️%20Gostaria%20de%20um%20orçamento%20de%20energia%20solar.%20Vim%20pelo%20Nós%20Por%20Aí%20e%20tenho%20o%20voucher%20SV200." target="_blank" data-i18n="wa_quote">
         💬 Pedir orçamento no WhatsApp
       </a>
     </div>
@@ -371,23 +431,27 @@ section { padding:60px 24px; }
       <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
       <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
     </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
   </nav>
-  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← Voltar</button></div>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
-    <div class="section-label">Parceiro · Casa</div>
+    <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
     <h2>🌿 Greenmoon</h2>
-    <p class="form-sub">Preencha os seus dados para receber o código de desconto exclusivo para Landscape &amp; Patio.</p>
+    <p class="form-sub" data-i18n="greenmoon_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para Landscape &amp; Patio.</p>
     <div id="greenmoon-form-wrap">
-      <div class="pf-group"><label class="pf-label">Nome</label><input class="pf-input" id="gm-nome" type="text" placeholder="O seu nome"></div>
-      <div class="pf-group"><label class="pf-label">Sobrenome</label><input class="pf-input" id="gm-sobrenome" type="text" placeholder="O seu sobrenome"></div>
-      <div class="pf-group"><label class="pf-label">WhatsApp (Irlanda)</label><input class="pf-input" id="gm-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
-      <button class="pf-submit" id="btn-gm" onclick="submitForm('greenmoon')">Quero meu desconto</button>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="gm-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="gm-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_whatsapp">WhatsApp (Irlanda)</label><input class="pf-input" id="gm-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
+      <button class="pf-submit" id="btn-gm" onclick="submitForm('greenmoon')" data-i18n="want_discount_btn">Quero meu desconto</button>
     </div>
     <div class="coupon-box" id="coupon-greenmoon">
-      <div class="coupon-label">O seu código exclusivo</div>
+      <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
       <div class="coupon-code">GM5OFF</div>
-      <div class="coupon-extra">Ganhe 5% de desconto no seu orçamento 🎉</div>
-      <a class="coupon-wa" href="https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo,%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank">
+      <div class="coupon-extra" data-i18n="greenmoon_coupon_extra">Ganhe 5% de desconto no seu orçamento 🎉</div>
+      <a class="coupon-wa" href="https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo,%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" data-i18n="wa_greenmoon">
         💬 Enviar mensagem para a Greenmoon
       </a>
     </div>
@@ -398,6 +462,194 @@ section { padding:60px 24px; }
 <script>
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
+  /* ══════════════ TRANSLATIONS ══════════════ */
+  const I18N = {
+    pt: {
+      menu_about: 'Sobre',
+      menu_experiences: 'Experiências',
+      menu_partners: 'Parceiros',
+      menu_contact: 'Contato',
+      hero_tag: '🇮🇪 Irlanda',
+      hero_sub: 'Viver, viajar e inspirar.',
+      hero_btn: 'Explorar Experiências',
+      about_label: 'Quem Somos',
+      about_title: 'A Nossa História',
+      about_sub: 'Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.',
+      about_greeting: 'Olá, somos o Lucas & Mari! 👋',
+      about_body: 'Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.',
+      exp_label: 'Destinos',
+      exp_title: 'Conheça o Nosso Canal no<br>YOUTUBE',
+      exp_sub: 'Viagens que nos mudam por dentro.',
+      exp_santorini: 'Santorini (Grécia)',
+      exp_santorini_tag: 'Ilhas Gregas',
+      exp_andorra_tag: 'Melhor estação de Ski da Europa',
+      exp_sicilia: 'Sicília',
+      partners_label: 'Nossos Parceiros',
+      partners_title: 'Categorias de Parceiros',
+      partners_sub: 'Descontos e vantagens exclusivas para a nossa comunidade.',
+      cat_travel: 'Viagem',
+      cat_travel_desc: 'Descontos e vantagens para as suas viagens.',
+      cat_home: 'Casa',
+      cat_home_desc: 'Os melhores parceiros para reformar a tua casa na Irlanda.',
+      cat_food: 'Alimentação',
+      cat_food_desc: 'Restaurantes, delivery e produtos com descontos exclusivos.',
+      cat_beauty: 'Estética',
+      cat_beauty_desc: 'Salões, clínicas e produtos de beleza recomendados por nós.',
+      cat_exchange: 'Intercâmbio',
+      cat_exchange_desc: 'Agências para quem quer viver a experiência europeia.',
+      connect_label: 'Conecta Connosco',
+      connect_title: 'Vamos nos conectar?',
+      connect_sub: 'Parcerias, perguntas ou só para dizer olá — estamos por aqui.',
+      back: 'Voltar',
+      partners_travel_label: 'Parceiros · Viagem',
+      partners_home_label: 'Parceiros · Casa',
+      partner_home_label: 'Parceiro · Casa',
+      partner_choose: 'Escolha o parceiro e garanta o seu desconto exclusivo.',
+      airalo_desc: 'eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.',
+      assist_desc: 'Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.',
+      sunvolt_desc: 'Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.',
+      greenmoon_desc: 'Landscape & Patio — transforme o seu jardim e pátio com quem entende do assunto.',
+      access_partner: 'Acessar parceiro →',
+      want_discount: 'Quero meu desconto →',
+      want_discount_btn: 'Quero meu desconto',
+      sunvolt_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para placas solares.',
+      greenmoon_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para Landscape & Patio.',
+      form_first: 'Nome',
+      form_first_ph: 'O seu nome',
+      form_last: 'Sobrenome',
+      form_last_ph: 'O seu sobrenome',
+      form_whatsapp: 'WhatsApp (Irlanda)',
+      coupon_label: 'O seu código exclusivo',
+      sunvolt_coupon_extra: 'Peça o seu desconto de 200€ 🎉',
+      greenmoon_coupon_extra: 'Ganhe 5% de desconto no seu orçamento 🎉',
+      wa_quote: '💬 Pedir orçamento no WhatsApp',
+      wa_greenmoon: '💬 Enviar mensagem para a Greenmoon',
+      alert_fill: 'Por favor, preencha todos os campos.',
+      alert_ireland: 'O número deve começar com o código da Irlanda: +353',
+      sending: 'A enviar...'
+    },
+    en: {
+      menu_about: 'About',
+      menu_experiences: 'Experiences',
+      menu_partners: 'Partners',
+      menu_contact: 'Contact',
+      hero_tag: '🇮🇪 Ireland',
+      hero_sub: 'Live, travel and inspire.',
+      hero_btn: 'Explore Experiences',
+      about_label: 'Who We Are',
+      about_title: 'Our Story',
+      about_sub: 'From the countryside of São Paulo to the world — a couple who traded routine for a different life in Ireland.',
+      about_greeting: "Hi, we're Lucas & Mari! 👋",
+      about_body: "We left our life in Brazil to live the life we always dreamed of — Here we share our life in Ireland, travels around the world, and valuable tips.",
+      exp_label: 'Destinations',
+      exp_title: 'Check Out Our<br>YOUTUBE Channel',
+      exp_sub: 'Travels that change us from within.',
+      exp_santorini: 'Santorini (Greece)',
+      exp_santorini_tag: 'Greek Islands',
+      exp_andorra_tag: 'Best Ski Resort in Europe',
+      exp_sicilia: 'Sicily',
+      partners_label: 'Our Partners',
+      partners_title: 'Partner Categories',
+      partners_sub: 'Exclusive discounts and benefits for our community.',
+      cat_travel: 'Travel',
+      cat_travel_desc: 'Discounts and benefits for your travels.',
+      cat_home: 'Home',
+      cat_home_desc: 'The best partners to renovate your home in Ireland.',
+      cat_food: 'Food',
+      cat_food_desc: 'Restaurants, delivery and products with exclusive discounts.',
+      cat_beauty: 'Beauty',
+      cat_beauty_desc: 'Salons, clinics and beauty products we recommend.',
+      cat_exchange: 'Study Abroad',
+      cat_exchange_desc: 'Agencies for those who want to experience Europe.',
+      connect_label: 'Connect With Us',
+      connect_title: "Let's connect?",
+      connect_sub: "Partnerships, questions, or just to say hi — we're here.",
+      back: 'Back',
+      partners_travel_label: 'Partners · Travel',
+      partners_home_label: 'Partners · Home',
+      partner_home_label: 'Partner · Home',
+      partner_choose: 'Choose a partner and get your exclusive discount.',
+      airalo_desc: 'International eSIM — internet without roaming anywhere in the world. No need to switch SIM, no surprises on the bill.',
+      assist_desc: 'Complete travel insurance with an exclusive discount for the Nós Por Aí community. Travel with peace of mind.',
+      sunvolt_desc: 'Solar panels with a special discount for those coming from Nós Por Aí. Save on your energy bill.',
+      greenmoon_desc: 'Landscape & Patio — transform your garden and patio with people who know the craft.',
+      access_partner: 'Visit partner →',
+      want_discount: 'Get my discount →',
+      want_discount_btn: 'Get my discount',
+      sunvolt_form_sub: 'Fill in your details to receive the exclusive discount code for solar panels.',
+      greenmoon_form_sub: 'Fill in your details to receive the exclusive discount code for Landscape & Patio.',
+      form_first: 'First Name',
+      form_first_ph: 'Your first name',
+      form_last: 'Last Name',
+      form_last_ph: 'Your last name',
+      form_whatsapp: 'WhatsApp (Ireland)',
+      coupon_label: 'Your exclusive code',
+      sunvolt_coupon_extra: 'Claim your €200 discount 🎉',
+      greenmoon_coupon_extra: 'Get a 5% discount on your quote 🎉',
+      wa_quote: '💬 Request a quote on WhatsApp',
+      wa_greenmoon: '💬 Send a message to Greenmoon',
+      alert_fill: 'Please fill in all fields.',
+      alert_ireland: 'The number must start with the Ireland code: +353',
+      sending: 'Sending...'
+    }
+  };
+
+  let currentLang = 'pt';
+
+  function applyTranslations(lang) {
+    currentLang = lang;
+    const dict = I18N[lang];
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        if (el.hasAttribute('data-i18n-html')) {
+          el.innerHTML = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  function setLanguage(lang) {
+    try { localStorage.setItem('npa_lang', lang); } catch(e) {}
+    applyTranslations(lang);
+  }
+
+  function selectLanguage(lang) {
+    setLanguage(lang);
+    const modal = document.getElementById('langModal');
+    modal.classList.remove('show');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+  }
+
+  /* ══ INIT: show modal on first visit, otherwise use saved lang ══ */
+  (function initLanguage() {
+    let saved = null;
+    try { saved = localStorage.getItem('npa_lang'); } catch(e) {}
+    if (saved && I18N[saved]) {
+      applyTranslations(saved);
+      document.getElementById('langModal').style.display = 'none';
+    } else {
+      applyTranslations('pt');
+      requestAnimationFrame(() => {
+        document.getElementById('langModal').classList.add('show');
+      });
+    }
+  })();
+
+  /* ══════════════ NAVIGATION ══════════════ */
   function goPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -421,14 +673,15 @@ section { padding:60px 24px; }
   }, { passive:true });
 
   function submitForm(partner) {
+    const dict = I18N[currentLang];
     const pre  = partner === 'sunvolt' ? 'sv' : 'gm';
     const nome = document.getElementById(pre+'-nome').value.trim();
     const sob  = document.getElementById(pre+'-sobrenome').value.trim();
     const wa   = document.getElementById(pre+'-whatsapp').value.trim();
     const btn  = document.getElementById('btn-'+pre);
 
-    if (!nome || !sob || !wa) { alert('Por favor, preencha todos os campos.'); return; }
-    if (!wa.startsWith('+353')) { alert('O número deve começar com o código da Irlanda: +353'); return; }
+    if (!nome || !sob || !wa) { alert(dict.alert_fill); return; }
+    if (!wa.startsWith('+353')) { alert(dict.alert_ireland); return; }
 
     const info = partner === 'sunvolt' ? 'Sunvolt' : 'Greenmoon';
     const code = partner === 'sunvolt' ? 'SV200' : 'GM5OFF';
@@ -436,7 +689,7 @@ section { padding:60px 24px; }
     const data = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
 
     btn.disabled = true;
-    btn.textContent = 'A enviar...';
+    btn.textContent = dict.sending;
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
       nome:      nome,
@@ -445,7 +698,8 @@ section { padding:60px 24px; }
       parceiro:  info,
       categoria: 'Casa',
       voucher:   code,
-      data:      data
+      data:      data,
+      idioma:    currentLang
     }).then(showCoupon).catch(showCoupon);
 
     function showCoupon() {
