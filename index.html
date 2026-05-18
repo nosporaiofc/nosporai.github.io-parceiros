@@ -385,6 +385,12 @@ section { padding:60px 24px; }
       <div class="partner-desc" data-i18n="greenmoon_desc">Landscape &amp; Patio — transforme o seu jardim e pátio com quem entende do assunto.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
+    <div class="partner-card" onclick="goPage('page-modern-pergola')">
+      <div class="partner-emoji">🏡</div>
+      <div class="partner-name">Modern Pergola</div>
+      <div class="partner-desc" data-i18n="pergola_desc">Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.</div>
+      <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
+    </div>
   </div>
 </div>
 
@@ -459,6 +465,41 @@ section { padding:60px 24px; }
 </div>
 
 
+<!-- ══ PAGE: MODERN PERGOLA ══ -->
+<div class="page" id="page-modern-pergola">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="form-page-wrap">
+    <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
+    <h2>🏡 Modern Pergola</h2>
+    <p class="form-sub" data-i18n="pergola_form_sub">Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.</p>
+    <div id="modern-pergola-form-wrap">
+      <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="mp-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="mp-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_whatsapp">WhatsApp (Irlanda)</label><input class="pf-input" id="mp-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
+      <button class="pf-submit" id="btn-mp" onclick="submitForm('modern-pergola')" data-i18n="want_discount_btn">Quero meu desconto</button>
+    </div>
+    <div class="coupon-box" id="coupon-modern-pergola">
+      <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
+      <div class="coupon-code">HEATER4FREE</div>
+      <div class="coupon-extra" data-i18n="pergola_coupon_extra">Fechando sua pergola, ganhe o aquecedor grátis 🎉</div>
+      <a class="coupon-wa" href="https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%E2%80%99d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F" target="_blank" data-i18n="wa_pergola">
+        💬 Falar com a Modern Pergola
+      </a>
+    </div>
+  </div>
+</div>
+
+
 <script>
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
@@ -509,11 +550,13 @@ section { padding:60px 24px; }
       assist_desc: 'Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.',
       sunvolt_desc: 'Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.',
       greenmoon_desc: 'Landscape & Patio — transforme o seu jardim e pátio com quem entende do assunto.',
+      pergola_desc: 'Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.',
       access_partner: 'Acessar parceiro →',
       want_discount: 'Quero meu desconto →',
       want_discount_btn: 'Quero meu desconto',
       sunvolt_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para placas solares.',
       greenmoon_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para Landscape & Patio.',
+      pergola_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.',
       form_first: 'Nome',
       form_first_ph: 'O seu nome',
       form_last: 'Sobrenome',
@@ -522,8 +565,10 @@ section { padding:60px 24px; }
       coupon_label: 'O seu código exclusivo',
       sunvolt_coupon_extra: 'Peça o seu desconto de 200€ 🎉',
       greenmoon_coupon_extra: 'Ganhe 5% de desconto no seu orçamento 🎉',
+      pergola_coupon_extra: 'Fechando sua pergola, ganhe o aquecedor grátis 🎉',
       wa_quote: '💬 Pedir orçamento no WhatsApp',
       wa_greenmoon: '💬 Enviar mensagem para a Greenmoon',
+      wa_pergola: '💬 Falar com a Modern Pergola',
       alert_fill: 'Por favor, preencha todos os campos.',
       alert_ireland: 'O número deve começar com o código da Irlanda: +353',
       sending: 'A enviar...'
@@ -573,11 +618,13 @@ section { padding:60px 24px; }
       assist_desc: 'Complete travel insurance with an exclusive discount for the Nós Por Aí community. Travel with peace of mind.',
       sunvolt_desc: 'Solar panels with a special discount for those coming from Nós Por Aí. Save on your energy bill.',
       greenmoon_desc: 'Landscape & Patio — transform your garden and patio with people who know the craft.',
+      pergola_desc: 'Modern pergolas for your garden — and during the promotion, the heater comes free with your pergola.',
       access_partner: 'Visit partner →',
       want_discount: 'Get my discount →',
       want_discount_btn: 'Get my discount',
       sunvolt_form_sub: 'Fill in your details to receive the exclusive discount code for solar panels.',
       greenmoon_form_sub: 'Fill in your details to receive the exclusive discount code for Landscape & Patio.',
+      pergola_form_sub: 'Fill in your details to receive the exclusive Modern Pergola discount code.',
       form_first: 'First Name',
       form_first_ph: 'Your first name',
       form_last: 'Last Name',
@@ -586,8 +633,10 @@ section { padding:60px 24px; }
       coupon_label: 'Your exclusive code',
       sunvolt_coupon_extra: 'Claim your €200 discount 🎉',
       greenmoon_coupon_extra: 'Get a 5% discount on your quote 🎉',
+      pergola_coupon_extra: 'Book your pergola and get the heater for free 🎉',
       wa_quote: '💬 Request a quote on WhatsApp',
       wa_greenmoon: '💬 Send a message to Greenmoon',
+      wa_pergola: '💬 Chat with Modern Pergola',
       alert_fill: 'Please fill in all fields.',
       alert_ireland: 'The number must start with the Ireland code: +353',
       sending: 'Sending...'
@@ -672,9 +721,16 @@ section { padding:60px 24px; }
     if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
   }, { passive:true });
 
+  const PARTNER_CFG = {
+    'sunvolt':        { pre:'sv', info:'Sunvolt',        code:'SV200' },
+    'greenmoon':      { pre:'gm', info:'Greenmoon',      code:'GM5OFF' },
+    'modern-pergola': { pre:'mp', info:'Modern Pergola', code:'HEATER4FREE' }
+  };
+
   function submitForm(partner) {
     const dict = I18N[currentLang];
-    const pre  = partner === 'sunvolt' ? 'sv' : 'gm';
+    const cfg  = PARTNER_CFG[partner];
+    const pre  = cfg.pre;
     const nome = document.getElementById(pre+'-nome').value.trim();
     const sob  = document.getElementById(pre+'-sobrenome').value.trim();
     const wa   = document.getElementById(pre+'-whatsapp').value.trim();
@@ -683,8 +739,8 @@ section { padding:60px 24px; }
     if (!nome || !sob || !wa) { alert(dict.alert_fill); return; }
     if (!wa.startsWith('+353')) { alert(dict.alert_ireland); return; }
 
-    const info = partner === 'sunvolt' ? 'Sunvolt' : 'Greenmoon';
-    const code = partner === 'sunvolt' ? 'SV200' : 'GM5OFF';
+    const info = cfg.info;
+    const code = cfg.code;
     const now  = new Date();
     const data = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
 
