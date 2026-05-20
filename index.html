@@ -139,6 +139,9 @@ section { padding:60px 24px; }
 .coupon-extra { font-size:0.82rem; color:var(--charcoal); margin-top:10px; line-height:1.6; font-weight:600; }
 .coupon-wa { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; padding:13px 24px; border-radius:100px; text-decoration:none; margin-top:16px; transition:background 0.2s,transform 0.15s; }
 .coupon-wa:hover { background:#1ebe5d; transform:translateY(-2px); }
+.coupon-note { font-size:0.76rem; color:var(--gray); margin-top:10px; line-height:1.6; }
+.coupon-site { display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; padding:13px 24px; border-radius:100px; text-decoration:none; margin-top:16px; transition:background 0.2s,transform 0.15s; }
+.coupon-site:hover { background:#444; transform:translateY(-2px); }
 
 /* LANGUAGE MODAL */
 .lang-modal { position:fixed; inset:0; z-index:9999; background:rgba(20,20,20,0.85); backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
@@ -275,9 +278,10 @@ section { padding:60px 24px; }
         <div><h4 data-i18n="cat_home">Casa</h4><p data-i18n="cat_home_desc">Os melhores parceiros para reformar a tua casa na Irlanda.</p></div>
         <span class="tip-arrow">›</span>
       </div>
-      <div class="tip-card">
-        <div class="tip-icon">🥗</div>
-        <div><h4 data-i18n="cat_food">Alimentação</h4><p data-i18n="cat_food_desc">Restaurantes, delivery e produtos com descontos exclusivos.</p></div>
+      <div class="tip-card" onclick="goPage('page-cat-restaurantes')">
+        <div class="tip-icon">🍽️</div>
+        <div><h4 data-i18n="cat_food">Restaurantes</h4><p data-i18n="cat_food_desc">Os melhores restaurantes com descontos exclusivos.</p></div>
+        <span class="tip-arrow">›</span>
       </div>
       <div class="tip-card">
         <div class="tip-icon">💅</div>
@@ -500,6 +504,68 @@ section { padding:60px 24px; }
 </div>
 
 
+<!-- ══ PAGE: CAT RESTAURANTES ══ -->
+<div class="page" id="page-cat-restaurantes">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-home')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="partner-page-header">
+    <div class="section-label" data-i18n="partners_restaurant_label">Parceiros · Restaurantes</div>
+    <h2>🍽️ <span data-i18n="cat_food">Restaurantes</span></h2>
+    <p data-i18n="partner_choose">Escolha o parceiro e garanta o seu desconto exclusivo.</p>
+  </div>
+  <div class="partner-grid">
+    <div class="partner-card" onclick="goPage('page-the-boss')">
+      <div class="partner-emoji">🍽️</div>
+      <div class="partner-name">The Boss</div>
+      <div class="partner-desc" data-i18n="theboss_desc">Sabores autênticos com desconto exclusivo para a comunidade Nós Por Aí.</div>
+      <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE: THE BOSS ══ -->
+<div class="page" id="page-the-boss">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-restaurantes')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="form-page-wrap">
+    <div class="section-label" data-i18n="partner_restaurant_label">Parceiro · Restaurantes</div>
+    <h2>🍽️ The Boss</h2>
+    <p class="form-sub" data-i18n="theboss_form_sub">Preencha os seus dados para receber o código de desconto exclusivo do The Boss.</p>
+    <div id="the-boss-form-wrap">
+      <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="tb-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="tb-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
+      <button class="pf-submit" id="btn-tb" onclick="submitForm('the-boss')" data-i18n="want_discount_btn">Quero meu desconto</button>
+    </div>
+    <div class="coupon-box" id="coupon-the-boss">
+      <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
+      <div class="coupon-code">nosporai10</div>
+      <div class="coupon-extra" data-i18n="theboss_coupon_extra">10% de desconto 🎉</div>
+      <div class="coupon-note" data-i18n="theboss_coupon_note">Use o voucher no site ou App (1 voucher por cadastro) — Insira "Nosporai10" no checkout</div>
+      <a class="coupon-site" href="https://www.thebossrestaurant.ie/" target="_blank" data-i18n="site_theboss">Ir para o site do The Boss →</a>
+    </div>
+  </div>
+</div>
+
+
 <script>
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
@@ -532,8 +598,8 @@ section { padding:60px 24px; }
       cat_travel_desc: 'Descontos e vantagens para as suas viagens.',
       cat_home: 'Casa',
       cat_home_desc: 'Os melhores parceiros para reformar a tua casa na Irlanda.',
-      cat_food: 'Alimentação',
-      cat_food_desc: 'Restaurantes, delivery e produtos com descontos exclusivos.',
+      cat_food: 'Restaurantes',
+      cat_food_desc: 'Os melhores restaurantes com descontos exclusivos.',
       cat_beauty: 'Estética',
       cat_beauty_desc: 'Salões, clínicas e produtos de beleza recomendados por nós.',
       cat_exchange: 'Intercâmbio',
@@ -545,18 +611,22 @@ section { padding:60px 24px; }
       partners_travel_label: 'Parceiros · Viagem',
       partners_home_label: 'Parceiros · Casa',
       partner_home_label: 'Parceiro · Casa',
+      partners_restaurant_label: 'Parceiros · Restaurantes',
+      partner_restaurant_label: 'Parceiro · Restaurantes',
       partner_choose: 'Escolha o parceiro e garanta o seu desconto exclusivo.',
       airalo_desc: 'eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.',
       assist_desc: 'Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.',
       sunvolt_desc: 'Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.',
       greenmoon_desc: 'Landscape & Patio — transforme o seu jardim e pátio com quem entende do assunto.',
       pergola_desc: 'Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.',
+      theboss_desc: 'Sabores autênticos com desconto exclusivo para a comunidade Nós Por Aí.',
       access_partner: 'Acessar parceiro →',
       want_discount: 'Quero meu desconto →',
       want_discount_btn: 'Quero meu desconto',
       sunvolt_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para placas solares.',
       greenmoon_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para Landscape & Patio.',
       pergola_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.',
+      theboss_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo do The Boss.',
       form_first: 'Nome',
       form_first_ph: 'O seu nome',
       form_last: 'Sobrenome',
@@ -566,6 +636,9 @@ section { padding:60px 24px; }
       sunvolt_coupon_extra: 'Peça o seu desconto de 200€ 🎉',
       greenmoon_coupon_extra: 'Ganhe 5% de desconto no seu orçamento 🎉',
       pergola_coupon_extra: 'Fechando sua pergola, ganhe o aquecedor grátis 🎉',
+      theboss_coupon_extra: '10% de desconto 🎉',
+      theboss_coupon_note: 'Use o voucher no site ou App (1 voucher por cadastro) — Insira "Nosporai10" no checkout',
+      site_theboss: 'Ir para o site do The Boss →',
       wa_quote: '💬 Pedir orçamento no WhatsApp',
       wa_greenmoon: '💬 Enviar mensagem para a Greenmoon',
       wa_pergola: '💬 Falar com a Modern Pergola',
@@ -600,8 +673,8 @@ section { padding:60px 24px; }
       cat_travel_desc: 'Discounts and benefits for your travels.',
       cat_home: 'Home',
       cat_home_desc: 'The best partners to renovate your home in Ireland.',
-      cat_food: 'Food',
-      cat_food_desc: 'Restaurants, delivery and products with exclusive discounts.',
+      cat_food: 'Restaurants',
+      cat_food_desc: 'The best restaurants with exclusive discounts.',
       cat_beauty: 'Beauty',
       cat_beauty_desc: 'Salons, clinics and beauty products we recommend.',
       cat_exchange: 'Study Abroad',
@@ -613,18 +686,22 @@ section { padding:60px 24px; }
       partners_travel_label: 'Partners · Travel',
       partners_home_label: 'Partners · Home',
       partner_home_label: 'Partner · Home',
+      partners_restaurant_label: 'Partners · Restaurants',
+      partner_restaurant_label: 'Partner · Restaurants',
       partner_choose: 'Choose a partner and get your exclusive discount.',
       airalo_desc: 'International eSIM — internet without roaming anywhere in the world. No need to switch SIM, no surprises on the bill.',
       assist_desc: 'Complete travel insurance with an exclusive discount for the Nós Por Aí community. Travel with peace of mind.',
       sunvolt_desc: 'Solar panels with a special discount for those coming from Nós Por Aí. Save on your energy bill.',
       greenmoon_desc: 'Landscape & Patio — transform your garden and patio with people who know the craft.',
       pergola_desc: 'Modern pergolas for your garden — and during the promotion, the heater comes free with your pergola.',
+      theboss_desc: 'Authentic flavours with an exclusive discount for the Nós Por Aí community.',
       access_partner: 'Visit partner →',
       want_discount: 'Get my discount →',
       want_discount_btn: 'Get my discount',
       sunvolt_form_sub: 'Fill in your details to receive the exclusive discount code for solar panels.',
       greenmoon_form_sub: 'Fill in your details to receive the exclusive discount code for Landscape & Patio.',
       pergola_form_sub: 'Fill in your details to receive the exclusive Modern Pergola discount code.',
+      theboss_form_sub: 'Fill in your details to receive The Boss exclusive discount code.',
       form_first: 'First Name',
       form_first_ph: 'Your first name',
       form_last: 'Last Name',
@@ -634,6 +711,9 @@ section { padding:60px 24px; }
       sunvolt_coupon_extra: 'Claim your €200 discount 🎉',
       greenmoon_coupon_extra: 'Get a 5% discount on your quote 🎉',
       pergola_coupon_extra: 'Book your pergola and get the heater for free 🎉',
+      theboss_coupon_extra: '10% discount 🎉',
+      theboss_coupon_note: 'Use the voucher on the website or App (1 voucher per registration) — Enter "Nosporai10" at checkout',
+      site_theboss: 'Go to The Boss website →',
       wa_quote: '💬 Request a quote on WhatsApp',
       wa_greenmoon: '💬 Send a message to Greenmoon',
       wa_pergola: '💬 Chat with Modern Pergola',
@@ -722,9 +802,10 @@ section { padding:60px 24px; }
   }, { passive:true });
 
   const PARTNER_CFG = {
-    'sunvolt':        { pre:'sv', info:'Sunvolt',        code:'SV200' },
-    'greenmoon':      { pre:'gm', info:'Greenmoon',      code:'GM5OFF' },
-    'modern-pergola': { pre:'mp', info:'Modern Pergola', code:'HEATER4FREE' }
+    'sunvolt':        { pre:'sv', info:'Sunvolt',        code:'SV200',       categoria:'Casa',         whatsapp:true },
+    'greenmoon':      { pre:'gm', info:'Greenmoon',      code:'GM5OFF',      categoria:'Casa',         whatsapp:true },
+    'modern-pergola': { pre:'mp', info:'Modern Pergola', code:'HEATER4FREE', categoria:'Casa',         whatsapp:true },
+    'the-boss':       { pre:'tb', info:'The Boss',       code:'nosporai10',  categoria:'Restaurantes', whatsapp:false }
   };
 
   function submitForm(partner) {
@@ -733,11 +814,16 @@ section { padding:60px 24px; }
     const pre  = cfg.pre;
     const nome = document.getElementById(pre+'-nome').value.trim();
     const sob  = document.getElementById(pre+'-sobrenome').value.trim();
-    const wa   = document.getElementById(pre+'-whatsapp').value.trim();
     const btn  = document.getElementById('btn-'+pre);
+    let wa = '';
 
-    if (!nome || !sob || !wa) { alert(dict.alert_fill); return; }
-    if (!wa.startsWith('+353')) { alert(dict.alert_ireland); return; }
+    if (cfg.whatsapp) {
+      wa = document.getElementById(pre+'-whatsapp').value.trim();
+      if (!nome || !sob || !wa) { alert(dict.alert_fill); return; }
+      if (!wa.startsWith('+353')) { alert(dict.alert_ireland); return; }
+    } else {
+      if (!nome || !sob) { alert(dict.alert_fill); return; }
+    }
 
     const info = cfg.info;
     const code = cfg.code;
@@ -750,9 +836,9 @@ section { padding:60px 24px; }
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
       nome:      nome,
       sobrenome: sob,
-      whatsapp:  wa,
+      whatsapp:  wa || '—',
       parceiro:  info,
-      categoria: 'Casa',
+      categoria: cfg.categoria,
       voucher:   code,
       data:      data,
       idioma:    currentLang
