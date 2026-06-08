@@ -132,6 +132,16 @@ section { padding:60px 24px; }
 .pf-submit { width:100%; background:var(--charcoal); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; padding:15px 20px; border-radius:100px; border:none; cursor:pointer; margin-top:8px; transition:background 0.2s,transform 0.15s; }
 .pf-submit:hover { background:#444; transform:translateY(-1px); }
 .pf-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+.quiz-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.5rem; margin-bottom:1.2rem; }
+.quiz-card-soft { text-align:center; border-color:var(--accent); }
+.quiz-question { font-size:1rem; line-height:1.6; color:var(--text); margin-bottom:1.2rem; }
+.quiz-btns { display:flex; flex-direction:column; gap:.75rem; }
+.quiz-btn { padding:.85rem 1rem; border-radius:10px; border:none; font-size:.95rem; font-weight:600; cursor:pointer; width:100%; transition:opacity .2s,transform .1s; }
+.quiz-btn:active { transform:scale(.97); }
+.quiz-btn-yes { background:var(--accent); color:#fff; }
+.quiz-btn-no { background:transparent; border:1.5px solid var(--border); color:var(--text-muted); }
+.quiz-btn-yes:hover { opacity:.88; }
+.quiz-btn-no:hover { border-color:var(--accent); color:var(--accent); }
 .coupon-box { display:none; text-align:center; background:linear-gradient(135deg,#FFFBEE,#FFF3CD); border:2px dashed var(--mustard); border-radius:20px; padding:32px 24px; margin-top:8px; }
 .coupon-box.visible { display:block; }
 .coupon-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-bottom:10px; }
@@ -234,8 +244,8 @@ section { padding:60px 24px; }
     <div class="about-card">
       <img class="about-photo" src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/main/images/1.jpg" alt="Nós Por Aí">
       <div class="about-body">
-        <h3 data-i18n="about_greeting">Olá, somos o Lucas & Mari! 👋</h3>
-        <p data-i18n="about_body">Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.</p>
+        <h3 data-i18n="about_greeting">Oi, somos Lucas & Mari ✈️</h3>
+        <p data-i18n="about_body">Trocamos a estabilidade no Brasil por uma vida cheia de desafios, aventuras e novos começos na Irlanda. Compartilhamos nossa vida real no exterior: viagens, rotina, conquistas, perrengues e tudo que aprendemos vivendo e explorando o mundo. Já conhecemos 44 países e seguimos provando, todos os dias, que sonhos só funcionam quando a gente tem coragem de ir atrás.</p>
       </div>
     </div>
   </section>
@@ -315,7 +325,7 @@ section { padding:60px 24px; }
       <a class="social-btn" href="https://instagram.com/nosporai.ofc" target="_blank">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#FFC107" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="#FFC107" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#FFC107"/></svg>
       </a>
-      <a class="social-btn" href="#" target="_blank">
+      <a class="social-btn" href="https://www.youtube.com/@nosporai" target="_blank">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="5" stroke="#FFC107" stroke-width="2"/><polygon points="10,8.5 10,15.5 16,12" fill="#FFC107"/></svg>
       </a>
     </div>
@@ -353,6 +363,39 @@ section { padding:60px 24px; }
       <div class="partner-name">Assist365</div>
       <div class="partner-desc" data-i18n="assist_desc">Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.</div>
       <div class="partner-cta-label" data-i18n="access_partner">Acessar parceiro →</div>
+    </div>
+    <div class="partner-card" onclick="goPage('page-discovercars')">
+      <div class="partner-emoji">🚗</div>
+      <div class="partner-name">DiscoverCars.com</div>
+      <div class="partner-desc" data-i18n="discovercars_desc">Alugue carros em todo o mundo com desconto exclusivo para a comunidade Nós Por Aí.</div>
+      <div class="partner-cta-label" data-i18n="access_partner">Acessar parceiro →</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE: DISCOVERCARS ══ -->
+<div class="page" id="page-discovercars">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-viagem')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="form-page-wrap">
+    <div class="section-label" data-i18n="partners_travel_label">Parceiros · Viagem</div>
+    <h2>🚗 DiscoverCars.com</h2>
+    <p class="form-sub" data-i18n="discovercars_form_sub">Alugue carros em qualquer parte do mundo e use o código exclusivo no checkout para garantir o seu desconto.</p>
+    <div class="coupon-box visible" id="coupon-discovercars">
+      <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
+      <div class="coupon-code">NosPorAiofc</div>
+      <div class="coupon-extra" data-i18n="discovercars_coupon_extra">Use o código "NosPorAiofc" no checkout para ganhar desconto 🎉</div>
+      <a class="coupon-site" href="https://www.discovercars.com/br?a_aid=NosPorAiofc" target="_blank" data-i18n="site_discovercars">Ir para o site do DiscoverCars.com →</a>
     </div>
   </div>
 </div>
@@ -395,6 +438,12 @@ section { padding:60px 24px; }
       <div class="partner-desc" data-i18n="pergola_desc">Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
+    <div class="partner-card" onclick="goPage('page-prime-line')">
+      <div class="partner-emoji">🪵</div>
+      <div class="partner-name">Prime Line Flooring</div>
+      <div class="partner-desc" data-i18n="primeline_desc">Instalação de pisos laminados com desconto exclusivo para a comunidade Nós Por Aí.</div>
+      <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
+    </div>
   </div>
 </div>
 
@@ -426,7 +475,7 @@ section { padding:60px 24px; }
       <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
       <div class="coupon-code">SV200</div>
       <div class="coupon-extra" data-i18n="sunvolt_coupon_extra">Peça o seu desconto de 200€ 🎉</div>
-      <a class="coupon-wa" href="https://wa.me/353838760465?text=Olá%20Igor!%20☀️%20Gostaria%20de%20um%20orçamento%20de%20energia%20solar.%20Vim%20pelo%20Nós%20Por%20Aí%20e%20tenho%20o%20voucher%20SV200." target="_blank" data-i18n="wa_quote">
+      <a class="coupon-wa" href="https://wa.me/353838760465?text=Ol%C3%A1%20Igor%21%20%E2%98%80%EF%B8%8F%20Gostaria%20de%20um%20or%C3%A7amento%20de%20energia%20solar.%20Vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20tenho%20o%20voucher%20SV200." target="_blank" data-i18n="wa_quote" data-i18n-href="wa_sunvolt_link">
         💬 Pedir orçamento no WhatsApp
       </a>
     </div>
@@ -461,7 +510,7 @@ section { padding:60px 24px; }
       <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
       <div class="coupon-code">GM5OFF</div>
       <div class="coupon-extra" data-i18n="greenmoon_coupon_extra">Ganhe 5% de desconto no seu orçamento 🎉</div>
-      <a class="coupon-wa" href="https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo,%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" data-i18n="wa_greenmoon">
+      <a class="coupon-wa" href="https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo%2C%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento%21" target="_blank" data-i18n="wa_greenmoon" data-i18n-href="wa_greenmoon_link">
         💬 Enviar mensagem para a Greenmoon
       </a>
     </div>
@@ -485,19 +534,86 @@ section { padding:60px 24px; }
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
     <h2>🏡 Modern Pergola</h2>
-    <p class="form-sub" data-i18n="pergola_form_sub">Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.</p>
-    <div id="modern-pergola-form-wrap">
+
+    <!-- STEP 1: price awareness -->
+    <div id="mp-step1">
+      <div class="quiz-card">
+        <p class="quiz-question" data-i18n="pergola_q1">💡 Um projeto de pergola pode girar em torno de <strong>10.000€ sem vidros</strong> e até <strong>20.000€ com vidros</strong>.<br><br>Você está ciente desse valor?</p>
+        <div class="quiz-btns">
+          <button class="quiz-btn quiz-btn-yes" onclick="mpStep1('yes')" data-i18n="quiz_yes">Sim, estou ciente ✓</button>
+          <button class="quiz-btn quiz-btn-no"  onclick="mpStep1('no')"  data-i18n="quiz_no">Não sabia disso</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: proceed? (shown after step 1 regardless of answer) -->
+    <div id="mp-step2" style="display:none;">
+      <div class="quiz-card">
+        <p class="quiz-question" data-i18n="pergola_q2">Sabendo desse custo médio, quer prosseguir com o orçamento?</p>
+        <div class="quiz-btns">
+          <button class="quiz-btn quiz-btn-yes" onclick="mpStep2('yes')" data-i18n="quiz_proceed_yes">Sim, quero o orçamento →</button>
+          <button class="quiz-btn quiz-btn-no"  onclick="mpStep2('no')"  data-i18n="quiz_proceed_no">Não por agora</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOT NOW message -->
+    <div id="mp-not-now" style="display:none;">
+      <div class="quiz-card quiz-card-soft">
+        <p class="quiz-question" data-i18n="pergola_not_now">😊 Sem problema! Caso mude de ideia, volte aqui para cotar.</p>
+        <button class="quiz-btn quiz-btn-yes" style="margin-top:1rem;" onclick="mpChangeMind()" data-i18n="quiz_changed_mind">Mudei de ideia, quero continuar</button>
+      </div>
+    </div>
+
+    <!-- FORM (hidden until step 2 = yes) -->
+    <div id="modern-pergola-form-wrap" style="display:none;">
+      <p class="form-sub" data-i18n="pergola_form_sub">Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.</p>
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="mp-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
       <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="mp-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
       <div class="pf-group"><label class="pf-label" data-i18n="form_whatsapp">WhatsApp (Irlanda)</label><input class="pf-input" id="mp-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
       <button class="pf-submit" id="btn-mp" onclick="submitForm('modern-pergola')" data-i18n="want_discount_btn">Quero meu desconto</button>
     </div>
+
     <div class="coupon-box" id="coupon-modern-pergola">
       <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
       <div class="coupon-code">HEATER4FREE</div>
       <div class="coupon-extra" data-i18n="pergola_coupon_extra">Fechando sua pergola, ganhe o aquecedor grátis 🎉</div>
-      <a class="coupon-wa" href="https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%E2%80%99d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F" target="_blank" data-i18n="wa_pergola">
+      <a class="coupon-wa" href="https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%E2%80%99d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F" target="_blank" data-i18n="wa_pergola" data-i18n-href="wa_pergola_link">
         💬 Falar com a Modern Pergola
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE: PRIME LINE FLOORING ══ -->
+<div class="page" id="page-prime-line">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="form-page-wrap">
+    <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
+    <h2>🪵 Prime Line Flooring</h2>
+    <p class="form-sub" data-i18n="primeline_form_sub">Preencha os seus dados e receba o seu desconto exclusivo para instalação de pisos laminados.</p>
+    <div id="prime-line-form-wrap">
+      <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="pl-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
+      <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="pl-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
+      <button class="pf-submit" id="btn-pl" onclick="submitPrimeLine()" data-i18n="want_discount_btn">Quero meu desconto</button>
+    </div>
+    <div class="coupon-box" id="coupon-prime-line">
+      <div class="coupon-label" data-i18n="coupon_label">O seu desconto exclusivo</div>
+      <div class="coupon-code" style="font-size:1.6rem;">5% a 10% off</div>
+      <div class="coupon-extra" data-i18n="primeline_coupon_extra">Ganhe 5% de desconto em projetos abaixo de 5.000€ e 10% acima de 5.000€ 🎉</div>
+      <a class="coupon-wa" href="https://wa.me/353899844250?text=Ol%C3%A1%20Nathan%2C%20vim%20atrav%C3%A9s%20do%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" data-i18n="wa_primeline" data-i18n-href="wa_primeline_link">
+        💬 Falar com a Prime Line
       </a>
     </div>
   </div>
@@ -582,8 +698,8 @@ section { padding:60px 24px; }
       about_label: 'Quem Somos',
       about_title: 'A Nossa História',
       about_sub: 'Do interior de SP para o mundo — um casal que trocou a rotina por uma vida diferente na Irlanda.',
-      about_greeting: 'Olá, somos o Lucas & Mari! 👋',
-      about_body: 'Largamos nossa vida no Brasil pra viver a vida que sempre sonhamos — Aqui mostramos nossa vida na Irlanda, viagens pelo Mundo e dicas preciosas.',
+      about_greeting: 'Oi, somos Lucas & Mari ✈️',
+      about_body: 'Trocamos a estabilidade no Brasil por uma vida cheia de desafios, aventuras e novos começos na Irlanda. Compartilhamos nossa vida real no exterior: viagens, rotina, conquistas, perrengues e tudo que aprendemos vivendo e explorando o mundo. Já conhecemos 44 países e seguimos provando, todos os dias, que sonhos só funcionam quando a gente tem coragem de ir atrás.',
       exp_label: 'Destinos',
       exp_title: 'Conheça o Nosso Canal no<br>YOUTUBE',
       exp_sub: 'Viagens que nos mudam por dentro.',
@@ -616,9 +732,13 @@ section { padding:60px 24px; }
       partner_choose: 'Escolha o parceiro e garanta o seu desconto exclusivo.',
       airalo_desc: 'eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.',
       assist_desc: 'Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.',
+      discovercars_desc: 'Alugue carros em todo o mundo com desconto exclusivo para a comunidade Nós Por Aí.',
+      discovercars_form_sub: 'Alugue carros em qualquer parte do mundo e use o código exclusivo no checkout para garantir o seu desconto.',
+      discovercars_coupon_extra: 'Use o código "NosPorAiofc" no checkout para ganhar desconto 🎉',
+      site_discovercars: 'Ir para o site do DiscoverCars.com →',
       sunvolt_desc: 'Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.',
       greenmoon_desc: 'Landscape & Patio — transforme o seu jardim e pátio com quem entende do assunto.',
-      pergola_desc: 'Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.',
+      primeline_desc: 'Instalação de pisos laminados com desconto exclusivo para a comunidade Nós Por Aí.',
       theboss_desc: 'Coma o melhor sushi de Dublin — e o nosso preferido — com sabor autêntico, ingredientes frescos e um desconto exclusivo para a comunidade Nós Por Aí.',
       access_partner: 'Acessar parceiro →',
       want_discount: 'Quero meu desconto →',
@@ -626,6 +746,15 @@ section { padding:60px 24px; }
       sunvolt_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para placas solares.',
       greenmoon_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para Landscape & Patio.',
       pergola_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.',
+      pergola_q1: '💡 Um projeto de pergola pode girar em torno de 10.000€ sem vidros e até 20.000€ com vidros.\n\nVocê está ciente desse valor?',
+      pergola_q2: 'Sabendo desse custo médio, quer prosseguir com o orçamento?',
+      pergola_not_now: '😊 Sem problema! Caso mude de ideia, volte aqui para cotar.',
+      quiz_yes: 'Sim, estou ciente ✓',
+      quiz_no: 'Não sabia disso',
+      quiz_proceed_yes: 'Sim, quero o orçamento →',
+      quiz_proceed_no: 'Não por agora',
+      quiz_changed_mind: 'Mudei de ideia, quero continuar',
+      primeline_form_sub: 'Preencha os seus dados e receba o seu desconto exclusivo para instalação de pisos laminados.',
       theboss_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo do The Boss.',
       form_first: 'Nome',
       form_first_ph: 'O seu nome',
@@ -636,12 +765,18 @@ section { padding:60px 24px; }
       sunvolt_coupon_extra: 'Peça o seu desconto de 200€ 🎉',
       greenmoon_coupon_extra: 'Ganhe 5% de desconto no seu orçamento 🎉',
       pergola_coupon_extra: 'Fechando sua pergola, ganhe o aquecedor grátis 🎉',
+      primeline_coupon_extra: 'Ganhe 5% de desconto em projetos abaixo de 5.000€ e 10% acima de 5.000€ 🎉',
       theboss_coupon_extra: '10% de desconto 🎉',
       theboss_coupon_note: 'Use o voucher no site ou App (1 voucher por cadastro) — Insira "Nosporai10" no checkout',
       site_theboss: 'Ir para o site do The Boss →',
       wa_quote: '💬 Pedir orçamento no WhatsApp',
       wa_greenmoon: '💬 Enviar mensagem para a Greenmoon',
       wa_pergola: '💬 Falar com a Modern Pergola',
+      wa_primeline: '💬 Falar com a Prime Line',
+      wa_sunvolt_link: 'https://wa.me/353838760465?text=Ol%C3%A1%20Igor%21%20%E2%98%80%EF%B8%8F%20Gostaria%20de%20um%20or%C3%A7amento%20de%20energia%20solar.%20Vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20tenho%20o%20voucher%20SV200.',
+      wa_greenmoon_link: 'https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo%2C%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento%21',
+      wa_pergola_link: 'https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%27d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F',
+      wa_primeline_link: 'https://wa.me/353899844250?text=Ol%C3%A1%20Nathan%2C%20vim%20atrav%C3%A9s%20do%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento.',
       alert_fill: 'Por favor, preencha todos os campos.',
       alert_ireland: 'O número deve começar com o código da Irlanda: +353',
       sending: 'A enviar...'
@@ -691,9 +826,14 @@ section { padding:60px 24px; }
       partner_choose: 'Choose a partner and get your exclusive discount.',
       airalo_desc: 'International eSIM — internet without roaming anywhere in the world. No need to switch SIM, no surprises on the bill.',
       assist_desc: 'Complete travel insurance with an exclusive discount for the Nós Por Aí community. Travel with peace of mind.',
+      discovercars_desc: 'Rent cars anywhere in the world with an exclusive discount for the Nós Por Aí community.',
+      discovercars_form_sub: 'Rent cars anywhere in the world and use the exclusive code at checkout to get your discount.',
+      discovercars_coupon_extra: 'Use the code "NosPorAiofc" at checkout to get a discount 🎉',
+      site_discovercars: 'Go to DiscoverCars.com →',
       sunvolt_desc: 'Solar panels with a special discount for those coming from Nós Por Aí. Save on your energy bill.',
       greenmoon_desc: 'Landscape & Patio — transform your garden and patio with people who know the craft.',
       pergola_desc: 'Modern pergolas for your garden — and during the promotion, the heater comes free with your pergola.',
+      primeline_desc: 'Laminate flooring installation with an exclusive discount for the Nós Por Aí community.',
       theboss_desc: 'Eat the best sushi in Dublin — and our favourite — with authentic flavour, fresh ingredients and an exclusive discount for the Nós Por Aí community.',
       access_partner: 'Visit partner →',
       want_discount: 'Get my discount →',
@@ -701,6 +841,15 @@ section { padding:60px 24px; }
       sunvolt_form_sub: 'Fill in your details to receive the exclusive discount code for solar panels.',
       greenmoon_form_sub: 'Fill in your details to receive the exclusive discount code for Landscape & Patio.',
       pergola_form_sub: 'Fill in your details to receive the exclusive Modern Pergola discount code.',
+      pergola_q1: '💡 A pergola project can range around €10,000 without glass and up to €20,000 with glass.\n\nAre you aware of this cost?',
+      pergola_q2: 'Knowing this average cost, would you like to proceed with a quote?',
+      pergola_not_now: '😊 No problem! If you change your mind, come back here to get a quote.',
+      quiz_yes: 'Yes, I am aware ✓',
+      quiz_no: 'I didn\'t know that',
+      quiz_proceed_yes: 'Yes, I want a quote →',
+      quiz_proceed_no: 'Not right now',
+      quiz_changed_mind: 'I changed my mind, let\'s continue',
+      primeline_form_sub: 'Fill in your details and receive your exclusive discount for laminate flooring installation.',
       theboss_form_sub: 'Fill in your details to receive The Boss exclusive discount code.',
       form_first: 'First Name',
       form_first_ph: 'Your first name',
@@ -711,12 +860,18 @@ section { padding:60px 24px; }
       sunvolt_coupon_extra: 'Claim your €200 discount 🎉',
       greenmoon_coupon_extra: 'Get a 5% discount on your quote 🎉',
       pergola_coupon_extra: 'Book your pergola and get the heater for free 🎉',
+      primeline_coupon_extra: 'Get 5% off on projects under €5,000 and 10% off above €5,000 🎉',
       theboss_coupon_extra: '10% discount 🎉',
       theboss_coupon_note: 'Use the voucher on the website or App (1 voucher per registration) — Enter "Nosporai10" at checkout',
       site_theboss: 'Go to The Boss website →',
       wa_quote: '💬 Request a quote on WhatsApp',
       wa_greenmoon: '💬 Send a message to Greenmoon',
       wa_pergola: '💬 Chat with Modern Pergola',
+      wa_primeline: '💬 Chat with Prime Line',
+      wa_sunvolt_link: 'https://wa.me/353838760465?text=Hi%20Igor%21%20%E2%98%80%EF%B8%8F%20I%27d%20like%20a%20quote%20for%20solar%20energy.%20I%20came%20through%20N%C3%B3s%20Por%20A%C3%AD%20and%20I%20have%20voucher%20SV200.',
+      wa_greenmoon_link: 'https://wa.me/353894648818?text=Hi%20Reginaldo%2C%20I%20came%20through%20N%C3%B3s%20Por%20A%C3%AD%20and%20I%27d%20like%20a%20quote%21',
+      wa_pergola_link: 'https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%27d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F',
+      wa_primeline_link: 'https://wa.me/353899844250?text=Hi%20Nathan%2C%20I%20came%20through%20N%C3%B3s%20Por%20A%C3%AD%20and%20would%20like%20a%20quote.',
       alert_fill: 'Please fill in all fields.',
       alert_ireland: 'The number must start with the Ireland code: +353',
       sending: 'Sending...'
@@ -744,6 +899,11 @@ section { padding:60px 24px; }
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
       if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+
+    document.querySelectorAll('[data-i18n-href]').forEach(el => {
+      const key = el.getAttribute('data-i18n-href');
+      if (dict[key] !== undefined) el.setAttribute('href', dict[key]);
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -778,13 +938,74 @@ section { padding:60px 24px; }
     }
   })();
 
-  /* ══════════════ NAVIGATION ══════════════ */
+  /* ══════════════ NAVIGATION + HASH ROUTING ══════════════ */
+  const HASH_MAP = {
+    ''                          : 'page-home',
+    'inicio'                    : 'page-home',
+    'parceiros'                 : 'page-home',
+    'parceiros/viagem'          : 'page-cat-viagem',
+    'parceiros/viagem/discovercars' : 'page-discovercars',
+    'parceiros/casa'            : 'page-cat-casa',
+    'parceiros/casa/sunvolt'    : 'page-sunvolt',
+    'parceiros/casa/greenmoon'  : 'page-greenmoon',
+    'parceiros/casa/pergola'    : 'page-modern-pergola',
+    'parceiros/casa/primeline'  : 'page-prime-line',
+    'parceiros/restaurantes'    : 'page-cat-restaurantes',
+    'parceiros/restaurantes/theboss' : 'page-the-boss',
+  };
+  const PAGE_TO_HASH = Object.fromEntries(Object.entries(HASH_MAP).map(([h,p]) => [p,h]));
+
   function goPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.classList.add('active');
     window.scrollTo(0, 0);
+    const hash = PAGE_TO_HASH[id] ?? '';
+    history.pushState(null, '', hash ? '#' + hash : location.pathname + location.search);
+    /* Reset pergola quiz whenever user enters that page */
+    if (id === 'page-modern-pergola') {
+      document.getElementById('mp-step1').style.display = 'block';
+      document.getElementById('mp-step2').style.display = 'none';
+      document.getElementById('mp-not-now').style.display = 'none';
+      document.getElementById('modern-pergola-form-wrap').style.display = 'none';
+      document.getElementById('coupon-modern-pergola').classList.remove('visible');
+    }
   }
   function goHome() { goPage('page-home'); }
+
+  /* ══ MODERN PERGOLA QUIZ ══ */
+  function mpStep1() {
+    document.getElementById('mp-step1').style.display = 'none';
+    document.getElementById('mp-step2').style.display = 'block';
+  }
+  function mpStep2(answer) {
+    document.getElementById('mp-step2').style.display = 'none';
+    if (answer === 'yes') {
+      document.getElementById('modern-pergola-form-wrap').style.display = 'block';
+    } else {
+      document.getElementById('mp-not-now').style.display = 'block';
+    }
+  }
+  function mpChangeMind() {
+    document.getElementById('mp-not-now').style.display = 'none';
+    document.getElementById('modern-pergola-form-wrap').style.display = 'block';
+  }
+
+  function navigateToHash(raw) {
+    const hash = (raw || '').replace(/^#/, '').toLowerCase().trim();
+    const pageId = HASH_MAP[hash];
+    if (pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  window.addEventListener('popstate', () => navigateToHash(location.hash));
+
+  /* Navigate on first load if a hash is present */
+  if (location.hash) navigateToHash(location.hash);
 
   function toggleMenu() {
     const m = document.getElementById('mobileMenu');
@@ -800,6 +1021,27 @@ section { padding:60px 24px; }
     const bg = document.getElementById('heroBg');
     if (bg) bg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.18}px)`;
   }, { passive:true });
+
+  function submitPrimeLine() {
+    const dict = I18N[currentLang];
+    const nome = document.getElementById('pl-nome').value.trim();
+    const sob  = document.getElementById('pl-sobrenome').value.trim();
+    const btn  = document.getElementById('btn-pl');
+    if (!nome || !sob) { alert(dict.alert_fill); return; }
+    btn.disabled = true;
+    btn.textContent = dict.sending;
+    const now  = new Date();
+    const data = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      nome: nome, sobrenome: sob, whatsapp: '—',
+      parceiro: 'Prime Line Flooring', categoria: 'Casa',
+      voucher: '5%-10% OFF', data: data, idioma: currentLang
+    }).then(showCoupon).catch(showCoupon);
+    function showCoupon() {
+      document.getElementById('prime-line-form-wrap').style.display = 'none';
+      document.getElementById('coupon-prime-line').classList.add('visible');
+    }
+  }
 
   const PARTNER_CFG = {
     'sunvolt':        { pre:'sv', info:'Sunvolt',        code:'SV200',       categoria:'Casa',         whatsapp:true },
