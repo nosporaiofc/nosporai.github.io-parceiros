@@ -136,13 +136,12 @@ section { padding:60px 24px; }
 .quiz-card-soft { text-align:center; border-color:var(--accent); }
 .quiz-question { font-size:1rem; line-height:1.6; color:var(--text); margin-bottom:1.2rem; }
 .quiz-btns { display:flex; flex-direction:column; gap:.75rem; }
-.quiz-btn { padding:.85rem 1.2rem; border-radius:10px; border:none; font-size:.95rem; font-weight:600; cursor:pointer; width:100%; transition:opacity .2s,transform .1s; text-align:left; display:flex; align-items:center; gap:.6rem; }
-.quiz-btn::before { content:''; display:inline-block; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.6); flex-shrink:0; }
+.quiz-btn { padding:1rem 1.2rem; border-radius:12px; border:none; font-size:1rem; font-weight:600; cursor:pointer; width:100%; transition:background .2s,transform .1s; text-align:center; color:#fff; background:#555; box-shadow:0 2px 6px rgba(0,0,0,.15); -webkit-tap-highlight-color:transparent; }
 .quiz-btn:active { transform:scale(.97); }
-.quiz-btn-yes { background:var(--accent); color:#fff; }
-.quiz-btn-no { background:#5a5a5a; color:#fff; border:none; }
-.quiz-btn-yes:hover { opacity:.88; }
-.quiz-btn-no:hover { background:#444; }
+.quiz-btn-yes { background:#444; }
+.quiz-btn-no  { background:#444; }
+.quiz-btn-yes:hover { background:#333; }
+.quiz-btn-no:hover  { background:#333; }
 .coupon-box { display:none; text-align:center; background:linear-gradient(135deg,#FFFBEE,#FFF3CD); border:2px dashed var(--mustard); border-radius:20px; padding:32px 24px; margin-top:8px; }
 .coupon-box.visible { display:block; }
 .coupon-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray); margin-bottom:10px; }
