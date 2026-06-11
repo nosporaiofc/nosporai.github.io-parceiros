@@ -422,25 +422,25 @@ section { padding:60px 24px; }
   <div class="partner-grid">
     <div class="partner-card" onclick="goPage('page-sunvolt')">
       <div class="partner-emoji">☀️</div>
-      <div class="partner-name">Sunvolt</div>
+      <div class="partner-name">Placa Solar</div>
       <div class="partner-desc" data-i18n="sunvolt_desc">Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-greenmoon')">
       <div class="partner-emoji">🌿</div>
-      <div class="partner-name">Greenmoon</div>
+      <div class="partner-name">Landscaping</div>
       <div class="partner-desc" data-i18n="greenmoon_desc">Landscape &amp; Patio — transforme o seu jardim e pátio com quem entende do assunto.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-modern-pergola')">
       <div class="partner-emoji">🏡</div>
-      <div class="partner-name">Modern Pergola</div>
+      <div class="partner-name">Pergola</div>
       <div class="partner-desc" data-i18n="pergola_desc">Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-prime-line')">
       <div class="partner-emoji">🪵</div>
-      <div class="partner-name">Prime Line Flooring</div>
+      <div class="partner-name">Piso Laminado / Pisos em Geral</div>
       <div class="partner-desc" data-i18n="primeline_desc">Instalação de pisos laminados com desconto exclusivo para a comunidade Nós Por Aí.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
@@ -463,14 +463,47 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>☀️ Sunvolt</h2>
-    <p class="form-sub" data-i18n="sunvolt_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para placas solares.</p>
-    <div id="sunvolt-form-wrap">
+    <h2>☀️ Placa Solar</h2>
+
+    <!-- STEP 1: price awareness -->
+    <div id="sv-step1">
+      <div class="quiz-card">
+        <p class="quiz-question" data-i18n="sunvolt_q1">💡 Um projeto de placa solar pode girar de <strong>8.000€ a 12.000€</strong> — porém com retornos imediatos durante a produção de energia para a rede.<br><br>Você está ciente desse valor?</p>
+        <div class="quiz-btns">
+          <button class="quiz-btn quiz-btn-yes" onclick="svStep1()" data-i18n="quiz_yes">Sim, estou ciente ✓</button>
+          <button class="quiz-btn quiz-btn-no"  onclick="svStep1()" data-i18n="quiz_no">Não sabia disso</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: proceed? -->
+    <div id="sv-step2" style="display:none;">
+      <div class="quiz-card">
+        <p class="quiz-question" data-i18n="pergola_q2">Sabendo desse custo médio, quer prosseguir com o orçamento?</p>
+        <div class="quiz-btns">
+          <button class="quiz-btn quiz-btn-yes" onclick="svStep2('yes')" data-i18n="quiz_proceed_yes">Sim, quero o orçamento →</button>
+          <button class="quiz-btn quiz-btn-no"  onclick="svStep2('no')"  data-i18n="quiz_proceed_no">Não por agora</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOT NOW message -->
+    <div id="sv-not-now" style="display:none;">
+      <div class="quiz-card quiz-card-soft">
+        <p class="quiz-question" data-i18n="pergola_not_now">😊 Sem problema! Caso mude de ideia, volte aqui para cotar.</p>
+        <button class="quiz-btn quiz-btn-yes" style="margin-top:1rem;" onclick="svChangeMind()" data-i18n="quiz_changed_mind">Mudei de ideia, quero continuar</button>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div id="sunvolt-form-wrap" style="display:none;">
+      <p class="form-sub" data-i18n="sunvolt_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para placas solares.</p>
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="sv-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
       <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="sv-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
       <div class="pf-group"><label class="pf-label" data-i18n="form_whatsapp">WhatsApp (Irlanda)</label><input class="pf-input" id="sv-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
       <button class="pf-submit" id="btn-sv" onclick="submitForm('sunvolt')" data-i18n="want_discount_btn">Quero meu desconto</button>
     </div>
+
     <div class="coupon-box" id="coupon-sunvolt">
       <div class="coupon-label" data-i18n="coupon_label">O seu código exclusivo</div>
       <div class="coupon-code">SV200</div>
@@ -498,7 +531,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>🌿 Greenmoon</h2>
+    <h2>🌿 Landscaping</h2>
     <p class="form-sub" data-i18n="greenmoon_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para Landscape &amp; Patio.</p>
     <div id="greenmoon-form-wrap">
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="gm-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
@@ -511,7 +544,7 @@ section { padding:60px 24px; }
       <div class="coupon-code">GM5OFF</div>
       <div class="coupon-extra" data-i18n="greenmoon_coupon_extra">Ganhe 5% de desconto no seu orçamento 🎉</div>
       <a class="coupon-wa" href="https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo%2C%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento%21" target="_blank" data-i18n="wa_greenmoon" data-i18n-href="wa_greenmoon_link">
-        💬 Enviar mensagem para a Greenmoon
+        💬 Enviar mensagem para o Landscaping
       </a>
     </div>
   </div>
@@ -533,7 +566,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>🏡 Modern Pergola</h2>
+    <h2>🏡 Pergola</h2>
 
     <!-- STEP 1: price awareness -->
     <div id="mp-step1">
@@ -567,7 +600,7 @@ section { padding:60px 24px; }
 
     <!-- FORM (hidden until step 2 = yes) -->
     <div id="modern-pergola-form-wrap" style="display:none;">
-      <p class="form-sub" data-i18n="pergola_form_sub">Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.</p>
+      <p class="form-sub" data-i18n="pergola_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para a sua Pergola.</p>
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="mp-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
       <div class="pf-group"><label class="pf-label" data-i18n="form_last">Sobrenome</label><input class="pf-input" id="mp-sobrenome" type="text" data-i18n-placeholder="form_last_ph" placeholder="O seu sobrenome"></div>
       <div class="pf-group"><label class="pf-label" data-i18n="form_whatsapp">WhatsApp (Irlanda)</label><input class="pf-input" id="mp-whatsapp" type="tel" placeholder="+353 xx xxx xxxx" value="+353"></div>
@@ -579,7 +612,7 @@ section { padding:60px 24px; }
       <div class="coupon-code">HEATER4FREE</div>
       <div class="coupon-extra" data-i18n="pergola_coupon_extra">Fechando sua pergola, ganhe o aquecedor grátis 🎉</div>
       <a class="coupon-wa" href="https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%E2%80%99d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F" target="_blank" data-i18n="wa_pergola" data-i18n-href="wa_pergola_link">
-        💬 Falar com a Modern Pergola
+        💬 Falar sobre Pergola
       </a>
     </div>
   </div>
@@ -601,7 +634,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>🪵 Prime Line Flooring</h2>
+    <h2>🪵 Piso Laminado / Pisos em Geral</h2>
     <p class="form-sub" data-i18n="primeline_form_sub">Preencha os seus dados e receba o seu desconto exclusivo para instalação de pisos laminados.</p>
     <div id="prime-line-form-wrap">
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="pl-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
@@ -613,7 +646,7 @@ section { padding:60px 24px; }
       <div class="coupon-code" style="font-size:1.6rem;">5% a 10% off</div>
       <div class="coupon-extra" data-i18n="primeline_coupon_extra">Ganhe 5% de desconto em projetos abaixo de 5.000€ e 10% acima de 5.000€ 🎉</div>
       <a class="coupon-wa" href="https://wa.me/353899844250?text=Ol%C3%A1%20Nathan%2C%20vim%20atrav%C3%A9s%20do%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" data-i18n="wa_primeline" data-i18n-href="wa_primeline_link">
-        💬 Falar com a Prime Line
+        💬 Falar sobre Pisos
       </a>
     </div>
   </div>
@@ -744,8 +777,9 @@ section { padding:60px 24px; }
       want_discount: 'Quero meu desconto →',
       want_discount_btn: 'Quero meu desconto',
       sunvolt_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para placas solares.',
+      sunvolt_q1: '💡 Um projeto de placa solar pode girar de 8.000€ a 12.000€ — porém com retornos imediatos durante a produção de energia para a rede.\n\nVocê está ciente desse valor?',
       greenmoon_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para Landscape & Patio.',
-      pergola_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo da Modern Pergola.',
+      pergola_form_sub: 'Preencha os seus dados para receber o código de desconto exclusivo para a sua Pergola.',
       pergola_q1: '💡 Um projeto de pergola pode girar em torno de 10.000€ sem vidros e até 20.000€ com vidros.\n\nVocê está ciente desse valor?',
       pergola_q2: 'Sabendo desse custo médio, quer prosseguir com o orçamento?',
       pergola_not_now: '😊 Sem problema! Caso mude de ideia, volte aqui para cotar.',
@@ -770,9 +804,9 @@ section { padding:60px 24px; }
       theboss_coupon_note: 'Use o voucher no site ou App (1 voucher por cadastro) — Insira "Nosporai10" no checkout',
       site_theboss: 'Ir para o site do The Boss →',
       wa_quote: '💬 Pedir orçamento no WhatsApp',
-      wa_greenmoon: '💬 Enviar mensagem para a Greenmoon',
-      wa_pergola: '💬 Falar com a Modern Pergola',
-      wa_primeline: '💬 Falar com a Prime Line',
+      wa_greenmoon: '💬 Falar sobre Landscaping',
+      wa_pergola: '💬 Falar sobre Pergola',
+      wa_primeline: '💬 Falar sobre Pisos',
       wa_sunvolt_link: 'https://wa.me/353838760465?text=Ol%C3%A1%20Igor%21%20%E2%98%80%EF%B8%8F%20Gostaria%20de%20um%20or%C3%A7amento%20de%20energia%20solar.%20Vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20tenho%20o%20voucher%20SV200.',
       wa_greenmoon_link: 'https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo%2C%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento%21',
       wa_pergola_link: 'https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%27d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F',
@@ -839,8 +873,9 @@ section { padding:60px 24px; }
       want_discount: 'Get my discount →',
       want_discount_btn: 'Get my discount',
       sunvolt_form_sub: 'Fill in your details to receive the exclusive discount code for solar panels.',
+      sunvolt_q1: '💡 A solar panel project can range from €8,000 to €12,000 — but with immediate returns as the system feeds energy back to the grid.\n\nAre you aware of this cost?',
       greenmoon_form_sub: 'Fill in your details to receive the exclusive discount code for Landscape & Patio.',
-      pergola_form_sub: 'Fill in your details to receive the exclusive Modern Pergola discount code.',
+      pergola_form_sub: 'Fill in your details to receive the exclusive Pergola discount code.',
       pergola_q1: '💡 A pergola project can range around €10,000 without glass and up to €20,000 with glass.\n\nAre you aware of this cost?',
       pergola_q2: 'Knowing this average cost, would you like to proceed with a quote?',
       pergola_not_now: '😊 No problem! If you change your mind, come back here to get a quote.',
@@ -865,9 +900,9 @@ section { padding:60px 24px; }
       theboss_coupon_note: 'Use the voucher on the website or App (1 voucher per registration) — Enter "Nosporai10" at checkout',
       site_theboss: 'Go to The Boss website →',
       wa_quote: '💬 Request a quote on WhatsApp',
-      wa_greenmoon: '💬 Send a message to Greenmoon',
-      wa_pergola: '💬 Chat with Modern Pergola',
-      wa_primeline: '💬 Chat with Prime Line',
+      wa_greenmoon: '💬 Chat about Landscaping',
+      wa_pergola: '💬 Chat about Pergola',
+      wa_primeline: '💬 Chat about Flooring',
       wa_sunvolt_link: 'https://wa.me/353838760465?text=Hi%20Igor%21%20%E2%98%80%EF%B8%8F%20I%27d%20like%20a%20quote%20for%20solar%20energy.%20I%20came%20through%20N%C3%B3s%20Por%20A%C3%AD%20and%20I%20have%20voucher%20SV200.',
       wa_greenmoon_link: 'https://wa.me/353894648818?text=Hi%20Reginaldo%2C%20I%20came%20through%20N%C3%B3s%20Por%20A%C3%AD%20and%20I%27d%20like%20a%20quote%21',
       wa_pergola_link: 'https://wa.me/353874691278?text=Hi%20Marius%2C%20I%20came%20across%20you%20through%20%40nosporai.ofc.%20I%27d%20like%20to%20get%20a%20quote%20for%20a%20pergola%20%E2%80%94%20and%20as%20part%20of%20the%20promotion%2C%20the%20heater%20is%20included%2C%20right%3F',
@@ -971,10 +1006,34 @@ section { padding:60px 24px; }
       document.getElementById('modern-pergola-form-wrap').style.display = 'none';
       document.getElementById('coupon-modern-pergola').classList.remove('visible');
     }
+    /* Reset sunvolt quiz whenever user enters that page */
+    if (id === 'page-sunvolt') {
+      document.getElementById('sv-step1').style.display = 'block';
+      document.getElementById('sv-step2').style.display = 'none';
+      document.getElementById('sv-not-now').style.display = 'none';
+      document.getElementById('sunvolt-form-wrap').style.display = 'none';
+      document.getElementById('coupon-sunvolt').classList.remove('visible');
+    }
   }
   function goHome() { goPage('page-home'); }
 
-  /* ══ MODERN PERGOLA QUIZ ══ */
+  /* ══ SUNVOLT QUIZ ══ */
+  function svStep1() {
+    document.getElementById('sv-step1').style.display = 'none';
+    document.getElementById('sv-step2').style.display = 'block';
+  }
+  function svStep2(answer) {
+    document.getElementById('sv-step2').style.display = 'none';
+    if (answer === 'yes') {
+      document.getElementById('sunvolt-form-wrap').style.display = 'block';
+    } else {
+      document.getElementById('sv-not-now').style.display = 'block';
+    }
+  }
+  function svChangeMind() {
+    document.getElementById('sv-not-now').style.display = 'none';
+    document.getElementById('sunvolt-form-wrap').style.display = 'block';
+  }
   function mpStep1() {
     document.getElementById('mp-step1').style.display = 'none';
     document.getElementById('mp-step2').style.display = 'block';
@@ -1034,7 +1093,7 @@ section { padding:60px 24px; }
     const data = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
       nome: nome, sobrenome: sob, whatsapp: '—',
-      parceiro: 'Prime Line Flooring', categoria: 'Casa',
+      parceiro: 'Piso Laminado / Pisos em Geral', categoria: 'Casa',
       voucher: '5%-10% OFF', data: data, idioma: currentLang
     }).then(showCoupon).catch(showCoupon);
     function showCoupon() {
@@ -1044,9 +1103,9 @@ section { padding:60px 24px; }
   }
 
   const PARTNER_CFG = {
-    'sunvolt':        { pre:'sv', info:'Sunvolt',        code:'SV200',       categoria:'Casa',         whatsapp:true },
-    'greenmoon':      { pre:'gm', info:'Greenmoon',      code:'GM5OFF',      categoria:'Casa',         whatsapp:true },
-    'modern-pergola': { pre:'mp', info:'Modern Pergola', code:'HEATER4FREE', categoria:'Casa',         whatsapp:true },
+    'sunvolt':        { pre:'sv', info:'Placa Solar',        code:'SV200',       categoria:'Casa',         whatsapp:true },
+    'greenmoon':      { pre:'gm', info:'Landscaping',      code:'GM5OFF',      categoria:'Casa',         whatsapp:true },
+    'modern-pergola': { pre:'mp', info:'Pergola', code:'HEATER4FREE', categoria:'Casa',         whatsapp:true },
     'the-boss':       { pre:'tb', info:'The Boss',       code:'nosporai10',  categoria:'Restaurantes', whatsapp:false }
   };
 
