@@ -422,25 +422,25 @@ section { padding:60px 24px; }
   <div class="partner-grid">
     <div class="partner-card" onclick="goPage('page-sunvolt')">
       <div class="partner-emoji">☀️</div>
-      <div class="partner-name">Placa Solar</div>
+      <div class="partner-name" data-i18n="name_sunvolt">Placa Solar</div>
       <div class="partner-desc" data-i18n="sunvolt_desc">Placas solares com desconto especial para quem vem pelo Nós Por Aí. Economize na conta de energia.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-greenmoon')">
       <div class="partner-emoji">🌿</div>
-      <div class="partner-name">Landscaping</div>
+      <div class="partner-name" data-i18n="name_greenmoon">Landscaping</div>
       <div class="partner-desc" data-i18n="greenmoon_desc">Landscape &amp; Patio — transforme o seu jardim e pátio com quem entende do assunto.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-modern-pergola')">
       <div class="partner-emoji">🏡</div>
-      <div class="partner-name">Pergola</div>
+      <div class="partner-name" data-i18n="name_pergola">Pergola</div>
       <div class="partner-desc" data-i18n="pergola_desc">Pergolas modernas para o seu jardim — e na promoção, o aquecedor vem grátis com a sua pergola.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
     <div class="partner-card" onclick="goPage('page-prime-line')">
       <div class="partner-emoji">🪵</div>
-      <div class="partner-name">Piso Laminado / Pisos em Geral</div>
+      <div class="partner-name" data-i18n="name_primeline">Piso Laminado / Pisos em Geral</div>
       <div class="partner-desc" data-i18n="primeline_desc">Instalação de pisos laminados com desconto exclusivo para a comunidade Nós Por Aí.</div>
       <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
     </div>
@@ -463,7 +463,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>☀️ Placa Solar</h2>
+    <h2>☀️ <span data-i18n="name_sunvolt">Placa Solar</span></h2>
 
     <!-- STEP 1: price awareness -->
     <div id="sv-step1">
@@ -531,7 +531,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>🌿 Landscaping</h2>
+    <h2>🌿 <span data-i18n="name_greenmoon">Landscaping</span></h2>
     <p class="form-sub" data-i18n="greenmoon_form_sub">Preencha os seus dados para receber o código de desconto exclusivo para Landscape &amp; Patio.</p>
     <div id="greenmoon-form-wrap">
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="gm-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
@@ -544,7 +544,7 @@ section { padding:60px 24px; }
       <div class="coupon-code">GM5OFF</div>
       <div class="coupon-extra" data-i18n="greenmoon_coupon_extra">Ganhe 5% de desconto no seu orçamento 🎉</div>
       <a class="coupon-wa" href="https://wa.me/353894648818?text=Ol%C3%A1%20Reginaldo%2C%20vim%20pelo%20N%C3%B3s%20Por%20A%C3%AD%20e%20gostaria%20de%20um%20or%C3%A7amento%21" target="_blank" data-i18n="wa_greenmoon" data-i18n-href="wa_greenmoon_link">
-        💬 Enviar mensagem para o Landscaping
+        <span data-i18n="wa_greenmoon">💬 Falar sobre Landscaping</span>
       </a>
     </div>
   </div>
@@ -566,7 +566,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>🏡 Pergola</h2>
+    <h2>🏡 <span data-i18n="name_pergola">Pergola</span></h2>
 
     <!-- STEP 1: price awareness -->
     <div id="mp-step1">
@@ -634,7 +634,7 @@ section { padding:60px 24px; }
   <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-casa')">← <span data-i18n="back">Voltar</span></button></div>
   <div class="form-page-wrap">
     <div class="section-label" data-i18n="partner_home_label">Parceiro · Casa</div>
-    <h2>🪵 Piso Laminado / Pisos em Geral</h2>
+    <h2>🪵 <span data-i18n="name_primeline">Piso Laminado / Pisos em Geral</span></h2>
     <p class="form-sub" data-i18n="primeline_form_sub">Preencha os seus dados e receba o seu desconto exclusivo para instalação de pisos laminados.</p>
     <div id="prime-line-form-wrap">
       <div class="pf-group"><label class="pf-label" data-i18n="form_first">Nome</label><input class="pf-input" id="pl-nome" type="text" data-i18n-placeholder="form_first_ph" placeholder="O seu nome"></div>
@@ -804,6 +804,10 @@ section { padding:60px 24px; }
       theboss_coupon_note: 'Use o voucher no site ou App (1 voucher por cadastro) — Insira "Nosporai10" no checkout',
       site_theboss: 'Ir para o site do The Boss →',
       wa_quote: '💬 Pedir orçamento no WhatsApp',
+      name_sunvolt:   'Placa Solar',
+      name_greenmoon: 'Paisagismo / Landscaping',
+      name_pergola:   'Pergola',
+      name_primeline: 'Piso Laminado / Pisos em Geral',
       wa_greenmoon: '💬 Falar sobre Landscaping',
       wa_pergola: '💬 Falar sobre Pergola',
       wa_primeline: '💬 Falar sobre Pisos',
@@ -900,6 +904,10 @@ section { padding:60px 24px; }
       theboss_coupon_note: 'Use the voucher on the website or App (1 voucher per registration) — Enter "Nosporai10" at checkout',
       site_theboss: 'Go to The Boss website →',
       wa_quote: '💬 Request a quote on WhatsApp',
+      name_sunvolt:   'Solar Panels',
+      name_greenmoon: 'Landscaping',
+      name_pergola:   'Pergola',
+      name_primeline: 'Laminate / General Flooring',
       wa_greenmoon: '💬 Chat about Landscaping',
       wa_pergola: '💬 Chat about Pergola',
       wa_primeline: '💬 Chat about Flooring',
