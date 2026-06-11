@@ -933,8 +933,18 @@ section { padding:60px 24px; }
       if (dict[key] !== undefined) {
         if (el.hasAttribute('data-i18n-html')) {
           el.innerHTML = dict[key];
-        } else {
+        } else if (el.children.length === 0) {
+          // Leaf element — safe to replace textContent directly
           el.textContent = dict[key];
+        } else {
+          // Has child elements (e.g. <strong> inside) — only update text nodes
+          // Find the first text node and update it, or fall back to textContent
+          const textNodes = Array.from(el.childNodes).filter(n => n.nodeType === 3);
+          if (textNodes.length > 0) {
+            textNodes[0].textContent = dict[key];
+          } else {
+            el.textContent = dict[key];
+          }
         }
       }
     });
