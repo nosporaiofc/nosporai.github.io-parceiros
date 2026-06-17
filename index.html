@@ -132,6 +132,28 @@ section { padding:60px 24px; }
 .pf-submit { width:100%; background:var(--charcoal); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; padding:15px 20px; border-radius:100px; border:none; cursor:pointer; margin-top:8px; transition:background 0.2s,transform 0.15s; }
 .pf-submit:hover { background:#444; transform:translateY(-1px); }
 .pf-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+.om-highlight { text-align:center; background:linear-gradient(135deg,#1a1a1a,#2d2d2d); border-radius:20px; padding:2.5rem 1.5rem 2rem; margin:1.5rem 0 1.8rem; }
+.om-highlight-price { font-size:4.5rem; font-weight:900; color:#FFC107; line-height:1; letter-spacing:-.02em; }
+.om-highlight-label { font-size:1rem; color:rgba(255,255,255,.75); margin-top:.4rem; text-transform:uppercase; letter-spacing:.1em; font-weight:600; }
+.om-wa-btn { display:flex; align-items:center; justify-content:center; gap:.6rem; width:100%; background:#25D366; color:#fff; border-radius:14px; padding:1.1rem 1.5rem; font-size:1rem; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:opacity .2s,transform .1s; box-shadow:0 4px 14px rgba(37,211,102,.35); }
+.om-wa-btn:hover { opacity:.9; }
+.om-wa-btn:active { transform:scale(.97); }
+.gyg-options { display:flex; flex-direction:column; gap:.85rem; margin-top:1rem; }
+.gyg-option-btn { display:flex; align-items:center; gap:1rem; width:100%; background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:1rem 1.1rem; cursor:pointer; text-decoration:none; text-align:left; transition:border-color .2s,box-shadow .2s; }
+.gyg-option-btn:hover { border-color:var(--accent); box-shadow:0 2px 10px rgba(0,0,0,.07); }
+.gyg-option-icon { font-size:1.6rem; flex-shrink:0; }
+.gyg-option-text { display:flex; flex-direction:column; flex:1; gap:.15rem; }
+.gyg-option-text strong { font-size:.95rem; color:var(--text); font-weight:700; }
+.gyg-option-text span { font-size:.78rem; color:var(--text-muted); }
+.gyg-option-arrow { font-size:1.1rem; color:var(--accent); font-weight:700; flex-shrink:0; }
+.gyg-code-reveal { display:none; background:linear-gradient(135deg,#FFFBEE,#FFF3CD); border:2px dashed var(--mustard); border-radius:14px; padding:1.2rem 1.1rem; }
+.gyg-code-reveal.open { display:block; }
+.gyg-code-label { font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); margin-bottom:.6rem; }
+.gyg-code-row { display:flex; align-items:center; gap:.75rem; margin-bottom:.6rem; }
+.gyg-code-value { font-size:1.5rem; font-weight:800; letter-spacing:.06em; color:var(--charcoal); flex:1; }
+.gyg-copy-btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:.5rem .9rem; font-size:.85rem; font-weight:700; cursor:pointer; flex-shrink:0; transition:opacity .2s; }
+.gyg-copy-btn:hover { opacity:.85; }
+.gyg-code-note { font-size:.78rem; color:var(--gray); margin:0; }
 .quiz-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.5rem; margin-bottom:1.2rem; }
 .quiz-card-soft { text-align:center; border-color:var(--accent); }
 .quiz-question { font-size:1rem; line-height:1.6; color:var(--text); margin-bottom:1.2rem; }
@@ -293,9 +315,10 @@ section { padding:60px 24px; }
         <div><h4 data-i18n="cat_food">Restaurantes</h4><p data-i18n="cat_food_desc">Os melhores restaurantes com descontos exclusivos.</p></div>
         <span class="tip-arrow">›</span>
       </div>
-      <div class="tip-card">
+      <div class="tip-card" onclick="goPage('page-cat-estetica')">
         <div class="tip-icon">💅</div>
         <div><h4 data-i18n="cat_beauty">Estética</h4><p data-i18n="cat_beauty_desc">Salões, clínicas e produtos de beleza recomendados por nós.</p></div>
+        <span class="tip-arrow">›</span>
       </div>
       <div class="tip-card">
         <div class="tip-icon">🌍</div>
@@ -369,6 +392,69 @@ section { padding:60px 24px; }
       <div class="partner-name">DiscoverCars.com</div>
       <div class="partner-desc" data-i18n="discovercars_desc">Alugue carros em todo o mundo com desconto exclusivo para a comunidade Nós Por Aí.</div>
       <div class="partner-cta-label" data-i18n="access_partner">Acessar parceiro →</div>
+    </div>
+    <div class="partner-card" onclick="goPage('page-getyourguide')">
+      <div class="partner-emoji">🎟️</div>
+      <div class="partner-name">Get Your Guide</div>
+      <div class="partner-desc" data-i18n="gyg_desc">Experiências e tours em qualquer cidade do mundo — com desconto exclusivo para a comunidade Nós Por Aí.</div>
+      <div class="partner-cta-label" data-i18n="access_partner">Acessar parceiro →</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE: GET YOUR GUIDE ══ -->
+<div class="page" id="page-getyourguide">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-viagem')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="form-page-wrap">
+    <div class="section-label" data-i18n="partners_travel_label">Parceiros · Viagem</div>
+    <h2>🎟️ Get Your Guide</h2>
+    <p class="form-sub" data-i18n="gyg_form_sub">Experiências e tours em qualquer cidade do mundo. Escolha como quer aproveitar o seu desconto:</p>
+
+    <div class="gyg-options">
+
+      <!-- Botão 1: Instalar app -->
+      <a class="gyg-option-btn" href="https://gyg.me/nosporaiofc-app" target="_blank">
+        <span class="gyg-option-icon">📲</span>
+        <div class="gyg-option-text">
+          <strong data-i18n="gyg_app_title">Instale o app</strong>
+          <span data-i18n="gyg_app_sub">Acesse tours e experiências direto pelo app</span>
+        </div>
+        <span class="gyg-option-arrow">→</span>
+      </a>
+
+      <!-- Botão 2: Usar desconto -->
+      <button class="gyg-option-btn" onclick="toggleGygCode()">
+        <span class="gyg-option-icon">🏷️</span>
+        <div class="gyg-option-text">
+          <strong data-i18n="gyg_code_title">Use nosso desconto</strong>
+          <span data-i18n="gyg_code_sub">Copie o código e use no checkout</span>
+        </div>
+        <span class="gyg-option-arrow" id="gyg-arrow">→</span>
+      </button>
+
+      <!-- Código expansível -->
+      <div class="gyg-code-reveal" id="gyg-code-reveal">
+        <div class="gyg-code-label" data-i18n="gyg_code_label">Seu código exclusivo</div>
+        <div class="gyg-code-row">
+          <span class="gyg-code-value">NOSPORAIOFC5</span>
+          <button class="gyg-copy-btn" id="gyg-copy-btn" onclick="copyGygCode()">
+            <span data-i18n="copy_code">Copiar</span>
+          </button>
+        </div>
+        <p class="gyg-code-note" data-i18n="gyg_code_note">Insira o código no checkout ao reservar qualquer experiência.</p>
+      </div>
+
     </div>
   </div>
 </div>
@@ -653,6 +739,64 @@ section { padding:60px 24px; }
 </div>
 
 
+<!-- ══ PAGE: CAT ESTETICA ══ -->
+<div class="page" id="page-cat-estetica">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goHome()">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="cat-page-wrap">
+    <div class="section-label" data-i18n="cat_beauty">Estética</div>
+    <h2 class="cat-title">💅 <span data-i18n="cat_beauty">Estética</span></h2>
+    <p class="cat-sub" data-i18n="cat_beauty_desc">Salões, clínicas e produtos de beleza recomendados por nós.</p>
+    <div class="partner-grid">
+      <div class="partner-card" onclick="goPage('page-old-mustache')">
+        <div class="partner-emoji">✂️</div>
+        <div class="partner-name">Barbearia</div>
+        <div class="partner-desc" data-i18n="oldmustache_desc">Primeiro corte por apenas 20€ — barbearia recomendada pelo Nós Por Aí.</div>
+        <div class="partner-cta-label" data-i18n="want_discount">Quero meu desconto →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE: OLD MUSTACHE ══ -->
+<div class="page" id="page-old-mustache">
+  <nav>
+    <div class="nav-logo" onclick="goHome()">
+      <div class="logo-mark"><img src="https://raw.githubusercontent.com/nosporaiofc/nosporai.github.io-parceiros/refs/heads/main/images/Logo.png" alt="Logo"></div>
+      <span class="logo-wordmark">NÓS <span>POR</span> AÍ</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+  <div class="back-bar"><button class="back-btn" onclick="goPage('page-cat-estetica')">← <span data-i18n="back">Voltar</span></button></div>
+  <div class="form-page-wrap">
+    <div class="section-label" data-i18n="cat_beauty">Estética</div>
+    <h2>✂️ Barbearia</h2>
+
+    <div class="om-highlight">
+      <div class="om-highlight-price">20€</div>
+      <div class="om-highlight-label" data-i18n="om_highlight">no seu primeiro corte</div>
+    </div>
+
+    <a class="om-wa-btn" href="https://wa.me/5511994687979?text=Fala%20Roger,%20vim%20atrav%C3%A9s%20do%20N%C3%B3s%20Por%20A%C3%AD%20e%20quero%20agendar%20meu%20primeiro%20corte%20com%20voc%C3%AA%20por%2020%E2%82%AC!" target="_blank">
+      💬 <span data-i18n="om_cta">Agende com a Old Mustache</span>
+    </a>
+  </div>
+</div>
+
+
 <!-- ══ PAGE: CAT RESTAURANTES ══ -->
 <div class="page" id="page-cat-restaurantes">
   <nav>
@@ -766,6 +910,16 @@ section { padding:60px 24px; }
       airalo_desc: 'eSIM internacional — internet sem roaming em qualquer lugar do mundo. Sem trocar o chip, sem surpresas na fatura.',
       assist_desc: 'Seguro viagem completo com desconto exclusivo para a comunidade Nós Por Aí. Viaje mais tranquilo.',
       discovercars_desc: 'Alugue carros em todo o mundo com desconto exclusivo para a comunidade Nós Por Aí.',
+      gyg_desc: 'Experiências e tours em qualquer cidade do mundo — com desconto exclusivo para a comunidade Nós Por Aí.',
+      gyg_form_sub: 'Escolha como quer aproveitar o seu desconto:',
+      gyg_app_title: 'Instale o app',
+      gyg_app_sub: 'Acesse tours e experiências direto pelo app',
+      gyg_code_title: 'Use nosso desconto',
+      gyg_code_sub: 'Copie o código e use no checkout',
+      gyg_code_label: 'Seu código exclusivo',
+      gyg_code_note: 'Insira o código no checkout ao reservar qualquer experiência.',
+      copy_code: 'Copiar',
+      copied: '✓ Copiado!',
       discovercars_form_sub: 'Alugue carros em qualquer parte do mundo e use o código exclusivo no checkout para garantir o seu desconto.',
       discovercars_coupon_extra: 'Use o código "NosPorAiofc" no checkout para ganhar desconto 🎉',
       site_discovercars: 'Ir para o site do DiscoverCars.com →',
@@ -803,7 +957,9 @@ section { padding:60px 24px; }
       theboss_coupon_extra: '10% de desconto 🎉',
       theboss_coupon_note: 'Use o voucher no site ou App (1 voucher por cadastro) — Insira "Nosporai10" no checkout',
       site_theboss: 'Ir para o site do The Boss →',
-      wa_quote: '💬 Pedir orçamento no WhatsApp',
+      oldmustache_desc: 'Primeiro corte por apenas 20€ — barbearia recomendada pelo Nós Por Aí.',
+      om_highlight: 'no seu primeiro corte',
+      om_cta: 'Agende com a Old Mustache',
       name_sunvolt:   'Placa Solar',
       name_greenmoon: 'Paisagismo / Landscaping',
       name_pergola:   'Pergola',
@@ -865,6 +1021,16 @@ section { padding:60px 24px; }
       airalo_desc: 'International eSIM — internet without roaming anywhere in the world. No need to switch SIM, no surprises on the bill.',
       assist_desc: 'Complete travel insurance with an exclusive discount for the Nós Por Aí community. Travel with peace of mind.',
       discovercars_desc: 'Rent cars anywhere in the world with an exclusive discount for the Nós Por Aí community.',
+      gyg_desc: 'Experiences and tours in any city in the world — with an exclusive discount for the Nós Por Aí community.',
+      gyg_form_sub: 'Choose how you want to enjoy your discount:',
+      gyg_app_title: 'Install the app',
+      gyg_app_sub: 'Browse tours and experiences directly in the app',
+      gyg_code_title: 'Use our discount',
+      gyg_code_sub: 'Copy the code and use it at checkout',
+      gyg_code_label: 'Your exclusive code',
+      gyg_code_note: 'Enter the code at checkout when booking any experience.',
+      copy_code: 'Copy',
+      copied: '✓ Copied!',
       discovercars_form_sub: 'Rent cars anywhere in the world and use the exclusive code at checkout to get your discount.',
       discovercars_coupon_extra: 'Use the code "NosPorAiofc" at checkout to get a discount 🎉',
       site_discovercars: 'Go to DiscoverCars.com →',
@@ -903,6 +1069,9 @@ section { padding:60px 24px; }
       theboss_coupon_extra: '10% discount 🎉',
       theboss_coupon_note: 'Use the voucher on the website or App (1 voucher per registration) — Enter "Nosporai10" at checkout',
       site_theboss: 'Go to The Boss website →',
+      oldmustache_desc: 'First haircut for only €20 — barbershop recommended by Nós Por Aí.',
+      om_highlight: 'on your first haircut',
+      om_cta: 'Book with Old Mustache',
       wa_quote: '💬 Request a quote on WhatsApp',
       name_sunvolt:   'Solar Panels',
       name_greenmoon: 'Landscaping',
@@ -998,6 +1167,7 @@ section { padding:60px 24px; }
     'parceiros'                 : 'page-home',
     'parceiros/viagem'          : 'page-cat-viagem',
     'parceiros/viagem/discovercars' : 'page-discovercars',
+    'parceiros/viagem/getyourguide' : 'page-getyourguide',
     'parceiros/casa'            : 'page-cat-casa',
     'parceiros/casa/sunvolt'    : 'page-sunvolt',
     'parceiros/casa/greenmoon'  : 'page-greenmoon',
@@ -1005,6 +1175,8 @@ section { padding:60px 24px; }
     'parceiros/casa/primeline'  : 'page-prime-line',
     'parceiros/restaurantes'    : 'page-cat-restaurantes',
     'parceiros/restaurantes/theboss' : 'page-the-boss',
+    'parceiros/estetica'        : 'page-cat-estetica',
+    'parceiros/estetica/barbearia'  : 'page-old-mustache',
   };
   const PAGE_TO_HASH = Object.fromEntries(Object.entries(HASH_MAP).map(([h,p]) => [p,h]));
 
@@ -1034,6 +1206,37 @@ section { padding:60px 24px; }
     }
   }
   function goHome() { goPage('page-home'); }
+
+  /* ══ GET YOUR GUIDE ══ */
+  function toggleGygCode() {
+    const reveal = document.getElementById('gyg-code-reveal');
+    const arrow  = document.getElementById('gyg-arrow');
+    const isOpen = reveal.classList.toggle('open');
+    arrow.textContent = isOpen ? '↓' : '→';
+  }
+  function copyGygCode() {
+    const btn = document.getElementById('gyg-copy-btn');
+    navigator.clipboard.writeText('NOSPORAIOFC5').then(() => {
+      const dict = I18N[currentLang];
+      btn.querySelector('[data-i18n]').textContent = dict.copied || '✓ Copiado!';
+      setTimeout(() => {
+        btn.querySelector('[data-i18n]').textContent = dict.copy_code || 'Copiar';
+      }, 2000);
+    }).catch(() => {
+      // fallback for older browsers
+      const el = document.createElement('textarea');
+      el.value = 'NOSPORAIOFC5';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      const dict = I18N[currentLang];
+      btn.querySelector('[data-i18n]').textContent = dict.copied || '✓ Copiado!';
+      setTimeout(() => {
+        btn.querySelector('[data-i18n]').textContent = dict.copy_code || 'Copiar';
+      }, 2000);
+    });
+  }
 
   /* ══ SUNVOLT QUIZ ══ */
   function svStep1() {
